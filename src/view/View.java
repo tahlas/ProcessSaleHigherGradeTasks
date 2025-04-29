@@ -21,7 +21,7 @@ public class View {
     }
 
     /**
-     * Performs a fake sale, bu calling all system operations in the controller.
+     * Performs a fake sale, by calling all system operations in the controller.
      */
     public void runFakeExecution(){
         contr.startSale();

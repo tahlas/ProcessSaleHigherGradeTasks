@@ -11,6 +11,9 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This uses the test from lecture 10. It is currently a placeholder.
+ */
 class MainTest {
     private Main instanceToTest;
     private ByteArrayOutputStream printoutBuffer;

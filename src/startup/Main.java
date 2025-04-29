@@ -22,5 +22,9 @@ public class Main {
         Controller contr = new Controller();
         View view = new View(contr);
         view.runFakeExecution();
+
+        contr.startSale();
+        contr.scanItem("abc123", 1);
+
     }
 }
