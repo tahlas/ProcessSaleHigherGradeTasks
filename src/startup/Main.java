@@ -23,8 +23,9 @@ public class Main {
         View view = new View(contr);
         view.runFakeExecution();
 
-        contr.startSale();
-        contr.scanItem("abc123", 1);
+        //osäker om de ska vara här
+        //contr.startSale();
+        //contr.scanItem("abc123", 1);
 
     }
 }

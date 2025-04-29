@@ -1,5 +1,6 @@
 package model;
 
+import integration.ItemDTO;
 import integration.ItemInformation;
 
 import java.time.LocalTime;
@@ -12,14 +13,14 @@ public class Sale {
     private LocalTime saleTime;
     private Receipt receipt;
     private int price;
-    private ArrayList<ItemInformation> soldItems;
+    private ArrayList<ItemDTO> soldItems;//osäker om den behövs
 
     /**
      * Creates a new instance and saves the time of the sale.
      */
     public Sale(){
         setTimeOfSale();
-        receipt = new Receipt();
+        receipt = new Receipt(saleTime);
     }
 
     /**
@@ -30,15 +31,35 @@ public class Sale {
     }
 
     /**
-     * Adds scanned item to the list of sold items.
-     * @param itemInformation Informationen about the scanned item.
+     * Adds a scanned item to the list of sold items.
+     * @param itemDTO The item to add to the sale.
      */
-    public void addItem(ItemInformation itemInformation){
-        soldItems.add(itemInformation);
+    public void addItem(ItemDTO itemDTO){
+        soldItems.add(itemDTO);
+        receipt.addItemToReceipt(itemDTO);
     }
 
-    public void endSale(){
+    /**
+     * Adds a scanned item multiple times to the list of sold items.
+     * @param itemDTO The item to add to the sale.
+     * @param quantity The amount of items to add to the list of sold items.
+     */
+    public void addItem(ItemDTO itemDTO, int quantity){
+        for(int i = 0; i < quantity; i++){
+            soldItems.add(itemDTO);
+        }
+        receipt.addItemToReceipt(itemDTO, quantity);
+    }
 
+    /**
+     * Ends the current sale.
+     */
+    public void endSale(){ //osäker vad den faktiskt ska göra
+
+    }
+
+    public Receipt getReceipt(){
+        return receipt;
     }
 
 

@@ -1,13 +1,11 @@
 package controller;
 
-import integration.HandlerCreator;
-import integration.ItemDTO;
-import integration.Printer;
-import integration.Register;
+import integration.*;
 import model.Amount;
 import model.CashPayment;
 import model.Item;
 import model.Sale;
+import model.Receipt;
 
 /**
  * This is the application's only controller. All calls to the model pass through this class.
@@ -16,6 +14,7 @@ public class Controller {
     private Printer printer;
     private Register register;
     private HandlerCreator handlerCreator;
+
     public Controller(Printer printer, Register register, HandlerCreator handlerCreator) {
         this.printer = printer;
         this.register = register;
@@ -37,18 +36,27 @@ public class Controller {
      * Scans an item.
      */
     public void scanItem(String itemID, int itemQuantity){
-        ItemDTO scannedItem = getItemDTO(itemID);
+        InventoryHandler inventoryHandler = handlerCreator.getInventoryHandler(); //osäker om den bör vara såhär
+        ItemDTO scannedItem = inventoryHandler.getItemDTO(itemID);
+        sale.addItem(scannedItem);
+        //item.addItemToList(scannedItem); //osäker om detta ska vara här
+        register.presentCurrentSoldItem(item.getSoldItems());
+
 
     }
 
 
     /**
      * Ends the sale and processes the payment.
-     * @param paidAmount The total price of the sale.
+     * @param amountPaid The total price of the sale.
      */
-    public void endSaleAndPay(Amount paidAmount){
-        sale.endSale();
-        CashPayment payment = new CashPayment(paidAmount);
+    public void endSaleAndPay(Amount amountPaid){
+        sale.endSale(); //1.1
+        CashPayment payment = new CashPayment(amountPaid); //1.2
+        item.payForItems(payment);
+        Receipt receipt = sale.getReceipt();//1.5
+        item.printReceipt(Receipt);
+
     }
 
 }

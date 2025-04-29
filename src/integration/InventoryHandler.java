@@ -22,6 +22,4 @@ public class InventoryHandler {
     private ItemDTO invalidItemID(){
         return null;
     }
-
-
 }
