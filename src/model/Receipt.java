@@ -41,12 +41,74 @@ public class Receipt {
     public String createReceiptString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Time of Sale: ");
-        appendLine(saleTime.);
+        appendLine(builder, String.valueOf(saleTime));
+        appendNewLine(builder);
+        appendItemsOnReceipt(builder);
 
+        builder.append("Total: ");
+        appendTotalCost(builder);
+        appendNewLine(builder);
+
+        builder.append("VAT: ");
+        appendTotalVAT(builder);
+
+        builder.append("Cash: ");
+
+        return builder.toString();
+    }
+
+    /**
+     * Appends relevant information about each item on the receipt.
+     * @param builder The builder to append the information to.
+     */
+    private void appendItemsOnReceipt(StringBuilder builder) {
+        for(ItemDTO item : itemsOnReceipt) {
+            builder.append(item.getName());
+            builder.append(" ");
+
+            builder.append(item.getQuantity());
+            builder.append(" x ");
+            builder.append(item.getPrice());
+
+            builder.append(item.getTotalItemPrice());
+            appendLine(builder,"SEK");
+        }
+    }
+
+    private void appendTotalCost(StringBuilder builder) {
+        int sumOfCost = 0;
+        for(ItemDTO item : itemsOnReceipt) {
+            sumOfCost += item.getTotalItemPrice();
+        }
+        builder.append(sumOfCost);
+    }
+
+    private void appendTotalVAT(StringBuilder builder) {
+        double sumOfVAT = 0;
+        for(ItemDTO item : itemsOnReceipt) {
+            sumOfVAT += item.getTotalItemPrice();
+        }
+        builder.append(sumOfVAT);
     }
 
     private void appendLine(StringBuilder builder, String line){
         builder.append(line);
+        appendNewLine(builder);
+    }
+
+    /**
+     * Appends a tab to a StringBuilder.
+     * @param builder The StringBuilder to append the tab to.
+     */
+    private void appendTab(StringBuilder builder){
+        builder.append("\t");
+    }
+
+    /**
+     * Appends a new line to the StringBuilder.
+     * @param builder The StringBuilder to append the new line to.
+     */
+    private void appendNewLine(StringBuilder builder){
         builder.append("\n");
     }
 
