@@ -65,11 +65,6 @@ public class ItemDTO {
         appendLine(builder, String.valueOf(VAT));
         builder.append("Item description: ");
         appendLine(builder, description);
-        //builder.append("Item ID: " + ID + "\n");
-        //builder.append("Item name: " + name + "\n");
-        //builder.append("Item cost: " + price + "\n");
-        //builder.append("VAT: " + VAT + "\n");
-        //builder.append("Item description: " + description + "\n");
         return builder.toString();
     }
 
