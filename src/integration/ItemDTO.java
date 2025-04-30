@@ -9,13 +9,15 @@ public class ItemDTO {
     private final int price; //osäker om int eller Amount
     private final double VAT; //int?
     private final String description;
+    private int quantity; //osäker om den behövs
 
-    public ItemDTO(String ID, String name, int price, double VAT, String description) {
+    public ItemDTO(String ID, String name, int price, double VAT, String description, int quantity) {
         this.ID = ID;
         this.name = name;
         this.price = price;
         this.VAT = VAT;
         this.description = description;
+        this.quantity = quantity;
     }
 
     /**
@@ -32,6 +34,18 @@ public class ItemDTO {
      */
     public int getPrice() {
         return this.price;
+    }
+
+    /**
+     * This is used to get the name of the item.
+     * @return The item's name.
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    public int getQuantity(){
+        return this.quantity;
     }
 
     /**
@@ -59,10 +73,33 @@ public class ItemDTO {
         return builder.toString();
     }
 
+    /**
+     * Appends a String and creates a new line at the end.
+     * @param builder The StringBuilder to append the line to.
+     * @param line The line to append.
+     */
     private void appendLine(StringBuilder builder, String line){
         builder.append(line);
         builder.append("\n");
     }
+
+    /**
+     * Calculates the total price for buying a certain amount of the same item.
+     * @return the total price for buying a certain amount of the same item.
+     */
+    public int getTotalItemPrice(){
+        return price * quantity;
+    }
+
+    /**
+     * Calculates the total VAT for the item.
+     * @return The total VAt for the item.
+     */
+    public double getTotalItemVAT(){
+        return VAT * getTotalItemPrice();
+    }
+
+
 
 
 
