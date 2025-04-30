@@ -54,6 +54,7 @@ public class Receipt {
 
         builder.append("Cash: ");
 
+
         return builder.toString();
     }
 
@@ -75,6 +76,10 @@ public class Receipt {
         }
     }
 
+    /**
+     * Appends the total cost.
+     * @param builder The StringBuilder to append the total cost to.
+     */
     private void appendTotalCost(StringBuilder builder) {
         int sumOfCost = 0;
         for(ItemDTO item : itemsOnReceipt) {
@@ -83,6 +88,10 @@ public class Receipt {
         builder.append(sumOfCost);
     }
 
+    /**
+     * Appends the total VAT.
+     * @param builder The StringBuilder to append the total VAT to.
+     */
     private void appendTotalVAT(StringBuilder builder) {
         double sumOfVAT = 0;
         for(ItemDTO item : itemsOnReceipt) {
@@ -91,6 +100,11 @@ public class Receipt {
         builder.append(sumOfVAT);
     }
 
+    /**
+     * Appends a String and a new line at the end.
+     * @param builder The StringBuilder to append the line to.
+     * @param line The String to append.
+     */
     private void appendLine(StringBuilder builder, String line){
         builder.append(line);
         appendNewLine(builder);

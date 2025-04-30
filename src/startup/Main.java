@@ -16,10 +16,10 @@ public class Main {
      * @param args The application does not take any command line parameters.
      */
     public static void main(String[] args) {
-        HandlerCreator creator = new HandlerCreator(); //handlercreator ska skapa saker
-        Register register = new Register();
         Printer printer = new Printer();
-        Controller contr = new Controller();
+        Register register = new Register();
+        HandlerCreator creator = new HandlerCreator(); //handlercreator ska skapa saker
+        Controller contr = new Controller(printer, register, creator);
         View view = new View(contr);
         view.runFakeExecution();
 

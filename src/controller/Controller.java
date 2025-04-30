@@ -51,11 +51,11 @@ public class Controller {
      * @param amountPaid The total price of the sale.
      */
     public void endSaleAndPay(Amount amountPaid){
-        sale.endSale(); //1.1
+        sale.endSale(); //1.1 tror inte den ska göra något
         CashPayment payment = new CashPayment(amountPaid); //1.2
         item.payForItems(payment);
         Receipt receipt = sale.getReceipt();//1.5
-        item.printReceipt(Receipt);
+        printer.printReceipt(receipt);
 
     }
 

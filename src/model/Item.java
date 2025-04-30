@@ -34,5 +34,11 @@ public class Item {
         return soldItems;
     }
 
+    /**
+     * Prints the receipt.
+     * @param receipt The receipt to print.
+     */
+
+
 
 }

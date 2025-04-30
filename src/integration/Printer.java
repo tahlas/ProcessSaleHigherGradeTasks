@@ -2,6 +2,7 @@ package integration;
 
 import model.Receipt;
 
+
 public class Printer {
     /**
      * Prints the specified receipt.

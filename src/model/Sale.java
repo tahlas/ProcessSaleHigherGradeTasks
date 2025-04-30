@@ -1,7 +1,6 @@
 package model;
 
 import integration.ItemDTO;
-import integration.ItemInformation;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

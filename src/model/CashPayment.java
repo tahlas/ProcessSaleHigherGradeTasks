@@ -18,13 +18,17 @@ public class CashPayment {
      * @param boughtItems A list of items to buy.
      */
     void calculateTotalCost(ArrayList<ItemDTO> boughtItems) {
-
-
-        totalCost = new Amount(0);
-        ItemDTO itemDTOAtIndexI;
-        for(int i = 0; i<boughtItems.size(); i++) {
-            itemDTOAtIndexI = boughtItems.get(i);
-            totalCost = totalCost.add(itemDTOAtIndexI.getPrice());
+        int sumOfTotalCost = 0;
+        for(ItemDTO item : boughtItems) {
+            sumOfTotalCost += item.getPrice();
         }
+
+
+//        totalCost = new Amount(0);
+//        ItemDTO itemDTOAtIndexI;
+//        for(int i = 0; i<boughtItems.size(); i++) {
+//            itemDTOAtIndexI = boughtItems.get(i);
+//            totalCost = totalCost.add(itemDTOAtIndexI.getPrice());
+//        }
     }
 }
