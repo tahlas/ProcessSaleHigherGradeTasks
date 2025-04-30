@@ -21,7 +21,7 @@ public class Main {
         HandlerCreator creator = new HandlerCreator(); //handlercreator ska skapa saker
         Controller contr = new Controller(printer, register, creator);
         View view = new View(contr);
-        view.runFakeExecution();
+        //view.runFakeExecution();
 
         //osäker om de ska vara här
         //contr.startSale();

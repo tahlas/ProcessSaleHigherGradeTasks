@@ -50,13 +50,6 @@ public class Sale {
         receipt.addItemToReceipt(itemDTO, quantity);
     }
 
-    /**
-     * Ends the current sale.
-     */
-    public void endSale(){ //osäker vad den faktiskt ska göra
-
-    }
-
     public Receipt getReceipt(){
         return receipt;
     }
