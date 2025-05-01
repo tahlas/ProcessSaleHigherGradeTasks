@@ -3,7 +3,6 @@ package controller;
 import integration.*;
 import model.Amount;
 import model.CashPayment;
-import model.Item;
 import model.Sale;
 import model.Receipt;
 
@@ -22,14 +21,12 @@ public class Controller {
     }
 
     private Sale sale;
-    private Item item;
 
     /**
      * Starts a new sale. This method must be called before doing anything else during a sale.
      */
     public void startSale(){
         sale = new Sale();
-        item = new Item();
     }
 
     /**
@@ -51,9 +48,9 @@ public class Controller {
         //sale.endSale(); //1.1 tror inte den ska göra något
         CashPayment payment = new CashPayment(amountPaid); //1.2
         sale.payForSale(payment);
-        //item.payForItems(payment); kanske fixar senare
         Receipt receipt = sale.getReceipt();//1.5
         printer.printReceipt(receipt);
+        register.presentChangeToGiveToCustomer(sale);
     }
 
 }

@@ -4,7 +4,6 @@ import controller.Controller;
 import integration.HandlerCreator;
 import integration.Printer;
 import integration.Register;
-import model.Amount;
 import view.View;
 
 /**
@@ -19,17 +18,9 @@ public class Main {
     public static void main(String[] args) {
         Printer printer = new Printer();
         Register register = new Register();
-        HandlerCreator creator = new HandlerCreator(); //handlercreator ska skapa saker
+        HandlerCreator creator = new HandlerCreator();
         Controller contr = new Controller(printer, register, creator);
         View view = new View(contr);
         view.runFakeExecution();
-
-//        //osäker om de ska vara här
-//        contr.startSale();
-//        contr.scanItem("abc123");
-//        contr.scanItem("abc123");
-//        contr.scanItem("def456");
-//        contr.endSaleAndPay(new Amount(500));
-
     }
 }

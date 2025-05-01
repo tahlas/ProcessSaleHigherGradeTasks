@@ -23,6 +23,10 @@ public final class Amount {
         return new Amount(this.amount + other.amount);
     }
 
+    public Amount multiply(Amount other){
+        return new Amount(this.amount * other.amount);
+    }
+
     /**
      * Calculates the difference between two amounts.
      * @param other The amount to subtract.

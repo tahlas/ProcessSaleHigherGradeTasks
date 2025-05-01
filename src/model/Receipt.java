@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Represents one receipt, which proves the payment of one sale...
  */
 public class Receipt {
-    private ArrayList <ItemDTO> itemsOnReceipt;
-    private LocalTime saleTime;
+    private final ArrayList <ItemDTO> itemsOnReceipt;
+    private final LocalTime saleTime;
     private final Sale sale;
 
     /**

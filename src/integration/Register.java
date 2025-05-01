@@ -1,6 +1,7 @@
 package integration;
 
 import model.Amount;
+import model.CashPayment;
 import model.Sale;
 
 /**
@@ -24,6 +25,11 @@ public class Register {
         System.out.println(printString);
     }
 
+    public void presentChangeToGiveToCustomer(Sale sale){
+        CashPayment payment = sale.getPayment();
+        System.out.println("Change to give the customer: " + payment.getChange());
+    }
+
     private String currentScannedItemString(Sale sale){
         StringBuilder builder = new StringBuilder();
         ItemDTO lastScannedItem = sale.getSoldItems().getLast();
@@ -37,7 +43,7 @@ public class Register {
 
         endSection(builder);
         builder.append("Total cost (incl VAT): ");
-        builder.append(sale.totalCost());
+        builder.append(sale.totalCost_Amount()); //något fel är här
         appendCurrency(builder);
         endSection(builder);
 

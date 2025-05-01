@@ -8,18 +8,16 @@ import model.Amount;
 public class ItemDTO {
     private final String ID;
     private final String name;
-    private final double price; //osäker om Amount eller double
     private final double VAT; //procent
     private final String description;
     private final Amount amount;
 
-    public ItemDTO(String ID, String name, double price, double VAT, String description, Amount amount) {
+    public ItemDTO(String ID, String name, Amount amount, double VAT, String description) {
         this.ID = ID;
         this.name = name;
-        this.price = price;
+        this.amount = amount;
         this.VAT = VAT;
         this.description = description;
-        this.amount = amount;
     }
 
     /**
@@ -34,7 +32,7 @@ public class ItemDTO {
         builder.append("Item name: ");
         appendLine(builder, name);
         builder.append("Item cost: ");
-        appendLine(builder, String.valueOf(price));
+        appendLine(builder, amount.toString());
         builder.append("VAT: ");
         builder.append(VAT);
         appendLine(builder, "%");
@@ -65,8 +63,8 @@ public class ItemDTO {
      * This is used to get the price of the item including VAT.
      * @return The item's price.
      */
-    public double getPrice() {
-        return this.price;
+    public Amount getPrice() {
+        return amount;
     }
 
     /**

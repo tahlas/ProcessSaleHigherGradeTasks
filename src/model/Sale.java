@@ -39,13 +39,13 @@ public class Sale {
         return payment;
     }
 
-    /**
-     * Gets the amount paid.
-     * @return The amount paid.
-     */
-    public Amount getPaidAmount(){
-        return payment.getPaidAmount();
-    }
+//    /**
+//     * Gets the amount paid.
+//     * @return The amount paid.
+//     */
+//    public Amount getPaidAmount(){
+//        return payment.getPaidAmount();
+//    }
 
     /**
      * Adds a scanned item to the list of sold items.
@@ -79,8 +79,14 @@ public class Sale {
      * @param specificItem The specific item to calculate the total price for.
      * @return The total price for a specific item.
      */
-    public double getTotalItemPrice(ItemDTO specificItem){
-        return getQuantity(specificItem) * specificItem.getPrice();
+//    public double getTotalItemPrice(ItemDTO specificItem){
+//        return getQuantity(specificItem) * specificItem.getPrice();
+//    }
+    public Amount getTotalItemPrice(ItemDTO specificItem){
+        Amount quantity = new Amount(getQuantity(specificItem));
+        Amount specificItemPrice = specificItem.getAmount();
+        return specificItemPrice.multiply(quantity);
+
     }
 
     /**
@@ -104,25 +110,32 @@ public class Sale {
      * Calculates the total VAT for the sale.
      * @return The total VAT.
      */
-    public double totalVAT(){
-        double sumOfTotalVAT = 0;
+//    public double totalVAT(){
+//        double sumOfTotalVAT = 0;
+//        for(ItemDTO item : soldItems){
+//            sumOfTotalVAT += item.getPrice() * item.getVATInDecimal();
+//        }
+//        return roundToTwoDecimals(sumOfTotalVAT);
+//    }
+    public Amount totalVAT(){
+        Amount sumOfTotalVat = new Amount(0);
         for(ItemDTO item : soldItems){
-            sumOfTotalVAT += item.getPrice() * item.getVATInDecimal();
+            sumOfTotalVat = sumOfTotalVat.add(item.getAmount());
         }
-        return roundToTwoDecimals(sumOfTotalVAT);
+        return sumOfTotalVat;
     }
 
-    /**
-     * Calculates the total cost of the sale.
-     * @return The total cost of the sale (so far).
-     */
-    public double totalCost(){
-        double sumOfTotalCost = 0;
-        for(ItemDTO item : soldItems){
-            sumOfTotalCost += item.getPrice();
-        }
-        return roundToTwoDecimals(sumOfTotalCost);
-    }
+//    /**
+//     * Calculates the total cost of the sale.
+//     * @return The total cost of the sale (so far).
+//     */
+//    public double totalCost(){
+//        double sumOfTotalCost = 0;
+//        for(ItemDTO item : soldItems){
+//            sumOfTotalCost += item.getPrice();
+//        }
+//        return roundToTwoDecimals(sumOfTotalCost);
+//    }
 
     /**
      * Calculates the total cost of the sale.
