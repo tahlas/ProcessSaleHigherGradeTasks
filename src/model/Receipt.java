@@ -25,20 +25,27 @@ public class Receipt {
      */
     public String createReceiptString() {
         StringBuilder builder = new StringBuilder();
+        appendLine(builder, "------------------ Begin Receipt -------------------");
         builder.append("Time of Sale: ");
         appendLine(builder, String.valueOf(saleTime));
         endSection(builder);
         appendItemsOnReceipt(builder);
+        endSection(builder);
 
         builder.append("Total: ");
         builder.append(sale.totalCost());
         endSection(builder);
 
         builder.append("VAT: ");
-        builder.append(sale.totalVAT());
+        appendLine(builder, String.valueOf(sale.totalVAT()));
 
         builder.append("Cash: ");
-
+        builder.append("PLACEHOLDER CASH");
+        appendLine(builder, " SEK");
+        builder.append("Change: ");
+        builder.append("PLACEHOLDER CHANGE");
+        appendLine(builder, " SEK");
+        appendLine(builder, "------------------ End receipt ---------------------");
 
         return builder.toString();
     }
@@ -48,16 +55,21 @@ public class Receipt {
      * @param builder The builder to append the information to.
      */
     private void appendItemsOnReceipt(StringBuilder builder) {
+        ArrayList<ItemDTO> alreadyProcessedItem = new ArrayList<>();
         for(ItemDTO item : itemsOnReceipt) {
-            builder.append(item.getName());
-            builder.append(" ");
+            if(!alreadyProcessedItem.contains(item)){
+                builder.append(item.getName());
+                builder.append(" ");
 
-            builder.append(sale.getQuantity(item));
-            builder.append(" x ");
-            builder.append(item.getPrice());
+                builder.append(sale.getQuantity(item));
+                builder.append(" x ");
+                builder.append(item.getPrice());
+                builder.append("\t");
+                builder.append(sale.getTotalItemPrice(item));
+                appendLine(builder," SEK");
 
-            builder.append(sale.getTotalItemPrice(item));
-            appendLine(builder,"SEK");
+                alreadyProcessedItem.add(item);
+            }
         }
     }
 
