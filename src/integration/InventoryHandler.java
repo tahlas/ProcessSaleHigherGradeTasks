@@ -41,8 +41,8 @@ public class InventoryHandler {
      * Adds items to the inventory.
      */
     private void addItems(){
-        inventory.add(new ItemDTO("abc123", "BigWheel Oatmeal", 29,6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free"));
-        inventory.add(new ItemDTO("abc123", "BigWheel Oatmeal", 29,6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free"));
-        inventory.add(new ItemDTO("def456", "YouGoGo Blueberry", 14,6, "YouGoGo Blueberry 240 g, low sugar youghurt, blueberry flavour"));
+        inventory.add(new ItemDTO("abc123", "BigWheel Oatmeal", 29.9,6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free"));
+        inventory.add(new ItemDTO("abc123", "BigWheel Oatmeal", 29.9,6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free"));
+        inventory.add(new ItemDTO("def456", "YouGoGo Blueberry", 14.9,6, "YouGoGo Blueberry 240 g, low sugar youghurt, blueberry flavour"));
     }
 }

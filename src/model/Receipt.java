@@ -13,6 +13,11 @@ public class Receipt {
     private LocalTime saleTime;
     private final Sale sale;
 
+    /**
+     * Creates a new instance.
+     * @param saleTime The time the sale started.
+     * @param sale The actual sale.
+     */
     public Receipt(LocalTime saleTime, Sale sale){
         this.saleTime = saleTime;
         this.itemsOnReceipt = sale.getSoldItems();
@@ -90,6 +95,4 @@ public class Receipt {
     private void endSection(StringBuilder builder){
         builder.append("\n");
     }
-
-
 }

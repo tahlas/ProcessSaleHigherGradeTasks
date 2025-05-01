@@ -1,19 +1,25 @@
 package integration;
 
+import model.Amount;
+
+/**
+ * This is a data transfer object that stores information about an item.
+ */
 public class ItemDTO {
-    //kanske borde ha quantity
     private final String ID;
     private final String name;
-    private final int price; //osäker om int eller Amount eller double
-    private final double VAT; //int?
+    private final double price; //osäker om Amount eller double
+    private final double VAT;
     private final String description;
+    private final Amount amount;
 
-    public ItemDTO(String ID, String name, int price, double VAT, String description) {
+    public ItemDTO(String ID, String name, double price, double VAT, String description, Amount amount) {
         this.ID = ID;
         this.name = name;
         this.price = price;
         this.VAT = VAT;
         this.description = description;
+        this.amount = amount;
     }
 
     /**
@@ -28,9 +34,8 @@ public class ItemDTO {
         builder.append("Item name: ");
         appendLine(builder, name);
         builder.append("Item cost: ");
-        appendLine(builder, Integer.toString(price));
+        appendLine(builder, String.valueOf(price));
         builder.append("VAT: ");
-        //appendLine(builder, String.valueOf(VAT));
         builder.append(VAT);
         appendLine(builder, "%");
         builder.append("Item description: ");
@@ -57,10 +62,10 @@ public class ItemDTO {
     }
 
     /**
-     * This is used to get the price of the item.
+     * This is used to get the price of the item including VAT.
      * @return The item's price.
      */
-    public int getPrice() {
+    public double getPrice() {
         return this.price;
     }
 
@@ -80,8 +85,7 @@ public class ItemDTO {
         return VAT/100;
     }
 
-
-
-
-
+    public Amount getAmount(){
+        return this.amount;
+    }
 }

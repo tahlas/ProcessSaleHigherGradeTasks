@@ -17,4 +17,8 @@ public final class Amount {
     public Amount add(Amount other){
         return new Amount(this.amount + other.amount);
     }
+
+    public Amount minus(Amount other){
+        return new Amount(this.amount - other.amount);
+    }
 }

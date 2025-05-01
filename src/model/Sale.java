@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Sale {
     private LocalTime saleTime;
-    private final Receipt receipt;
+    private Receipt receipt;
     private final ArrayList<ItemDTO> soldItems;
 
     /**
@@ -18,12 +18,11 @@ public class Sale {
      */
     public Sale(){
         setTimeOfSale();
-        this.receipt = new Receipt(saleTime, this);
         this.soldItems = new ArrayList<>();
     }
 
     /**
-     * Adds a scanned item to the list of sold items..
+     * Adds a scanned item to the list of sold items.
      * @param itemDTO The item to add to the sale.
      */
     public void addItem(ItemDTO itemDTO){
@@ -35,6 +34,9 @@ public class Sale {
      * @return The receipt for the sale.
      */
     public Receipt getReceipt(){
+        if(receiptDoesNotExist()){
+            receipt = new Receipt(saleTime, this);
+        }
         return receipt;
     }
 
@@ -73,16 +75,6 @@ public class Sale {
     }
 
     /**
-     * Checks if two item IDs are equal.
-     * @param firstItemID The first item ID to check.
-     * @param secondItemID The second item ID to check.
-     * @return True if they are equal, false if they are not equal.
-     */
-    private boolean itemIDIsEqual(String firstItemID, String secondItemID){
-        return firstItemID.equals(secondItemID);
-    }
-
-    /**
      * Calculates the total VAT for the sale.
      * @return The total VAT.
      */
@@ -93,7 +85,6 @@ public class Sale {
         }
         return roundToTwoDecimals(sumOfTotalVAT);
     }
-
 
     /**
      * Calculates the total cost of the sale.
@@ -106,7 +97,19 @@ public class Sale {
         }
         return roundToTwoDecimals(sumOfTotalCost);
     }
+    public Amount totalCost_Amount(){
+        Amount sumOfTotalCost = new Amount(0);
+        for(ItemDTO item : soldItems){
+            sumOfTotalCost = sumOfTotalCost.add(item.getAmount());
+        }
+        return sumOfTotalCost;
+    }
 
+    /**
+     * Rounds a double to two decimals.
+     * @param value The double to round.
+     * @return The rounded double.
+     */
     private double roundToTwoDecimals(double value){
         double scale = Math.pow(10, 2);
         return Math.round(value * scale) / scale;
@@ -119,5 +122,21 @@ public class Sale {
         saleTime = LocalTime.now();
     }
 
+    /**
+     * Checks if two item IDs are equal.
+     * @param firstItemID The first item ID to check.
+     * @param secondItemID The second item ID to check.
+     * @return True if they are equal, false if they are not equal.
+     */
+    private boolean itemIDIsEqual(String firstItemID, String secondItemID){
+        return firstItemID.equals(secondItemID);
+    }
 
+    /**
+     * Checks if the receipt exists.
+     * @return True if the receipt does not exist, false if it does exist.
+     */
+    private boolean receiptDoesNotExist(){
+        return receipt == null;
+    }
 }

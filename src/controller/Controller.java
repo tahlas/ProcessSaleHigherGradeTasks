@@ -50,10 +50,9 @@ public class Controller {
     public void endSaleAndPay(Amount amountPaid){
         //sale.endSale(); //1.1 tror inte den ska göra något
         CashPayment payment = new CashPayment(amountPaid); //1.2
-        item.payForItems(payment);
+        //item.payForItems(payment); kanske fixar senare
         Receipt receipt = sale.getReceipt();//1.5
         printer.printReceipt(receipt);
-
     }
 
 }

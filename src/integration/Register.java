@@ -6,6 +6,9 @@ import model.Sale;
 
 import java.util.ArrayList;
 
+/**
+ * This represents the register.
+ */
 public class Register {
 
     /**

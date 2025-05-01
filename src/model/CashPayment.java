@@ -5,30 +5,26 @@ import integration.ItemDTO;
 import java.util.ArrayList;
 
 public class CashPayment {
-    private Amount paidAmt;
+    private Amount paidAmount;
     private Amount totalCost;
 
-    public CashPayment(Amount paidAmt) {
-        this.paidAmt = paidAmt;
+    public CashPayment(Amount paidAmount) {
+        this.paidAmount = paidAmount;
     }
 
-    /**
-     * Calculates the total cost of the items.
-     *
-     * @param boughtItems A list of items to buy.
-     */
-    void calculateTotalCost(ArrayList<ItemDTO> boughtItems) {
-        int sumOfTotalCost = 0;
-        for(ItemDTO item : boughtItems) {
-            sumOfTotalCost += item.getPrice();
-        }
 
+    public void calculateTotalCost(Sale sale) {
+        totalCost = sale.totalCost_Amount();
+    }
 
-//        totalCost = new Amount(0);
-//        ItemDTO itemDTOAtIndexI;
-//        for(int i = 0; i<boughtItems.size(); i++) {
-//            itemDTOAtIndexI = boughtItems.get(i);
-//            totalCost = totalCost.add(itemDTOAtIndexI.getPrice());
-//        }
+    public Amount getPaidAmount(){
+        return this.paidAmount;
+    }
+    public Amount getTotalCost(){
+        return this.totalCost;
+    }
+
+    public Amount getChange(){
+        return totalCost.minus(paidAmount);
     }
 }

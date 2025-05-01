@@ -1,18 +1,17 @@
 package view;
 
 import controller.Controller;
-
-import java.sql.SQLOutput;
+import model.Amount;
 
 /**
- * This is a placeholder for the real view. it contains a hardcoded execution with calls to all
+ * This is a placeholder for the real view. It contains a hardcoded execution with calls to all
  * system operations in this controller.
  */
 public class View {
-    private Controller contr;
+    private final Controller contr;
 
     /**
-     * Creates a new instance, that uses the specified controller for alls to other layers.
+     * Creates a new instance that uses the specified controller for alls to other layers.
      *
      * @param contr The controller to use for all calls to other layers.
      */
@@ -21,12 +20,19 @@ public class View {
     }
 
     /**
-     * Performs a fake sale, by calling all system operations in the controller.
+     * Performs a fake sale by calling all system operations in the controller.
      */
     public void runFakeExecution(){
+//        contr.startSale();
+//        System.out.println("A new sale has been started.");
+//        contr.scanItem("abc123");
+
         contr.startSale();
-        System.out.println("A new sale has been started.");
         contr.scanItem("abc123");
+        contr.scanItem("abc123");
+        contr.scanItem("def456");
+        Amount amountPaid = new Amount(500);
+        contr.endSaleAndPay(amountPaid);
 
     }
 }
