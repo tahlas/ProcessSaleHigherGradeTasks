@@ -35,12 +35,11 @@ public class Controller {
     /**
      * Scans an item.
      */
-    public void scanItem(String itemID, int itemQuantity){
+    public void scanItem(String itemID){
         InventoryHandler inventoryHandler = handlerCreator.getInventoryHandler(); //osäker om den bör vara såhär
         ItemDTO scannedItem = inventoryHandler.getItemDTO(itemID);
         sale.addItem(scannedItem);
-        //item.addItemToList(scannedItem); //osäker om detta ska vara här
-        register.presentCurrentSoldItem(item.getSoldItems());
+        register.presentCurrentSoldItem(sale);
     }
 
 

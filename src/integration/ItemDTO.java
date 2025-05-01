@@ -30,7 +30,9 @@ public class ItemDTO {
         builder.append("Item cost: ");
         appendLine(builder, Integer.toString(price));
         builder.append("VAT: ");
-        appendLine(builder, String.valueOf(VAT));
+        //appendLine(builder, String.valueOf(VAT));
+        builder.append(VAT);
+        appendLine(builder, "%");
         builder.append("Item description: ");
         appendLine(builder, description);
         return builder.toString();

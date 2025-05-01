@@ -2,30 +2,47 @@ package integration;
 
 import model.Amount;
 import model.CashPayment;
+import model.Sale;
 
 import java.util.ArrayList;
 
 public class Register {
+
     /**
      * Shows information about the item that is scanned and the running total (including VAT).
      */
-    public void presentCurrentSoldItem(ArrayList<ItemDTO> soldItems) {
-        ItemDTO recentlyScannedItem = soldItems.getLast();
-        System.out.println("Add 1 item with item id " + recentlyScannedItem.getID() + ":\n");
-        System.out.println(recentlyScannedItem);
-        System.out.println("Total cost (incl VAT): " + runningTotal(soldItems));
+    public void presentCurrentSoldItem(Sale sale) {
+        String printString = currentSoldItemString(sale);
+        System.out.println(printString);
     }
 
-    /**
-     * Calculates the total cost of the items that have been sold so far.
-     * @param soldItems Items that have been sold.
-     * @return The total cost so far.
-     */
-    private int runningTotal(ArrayList<ItemDTO> soldItems){
-        int totalCost = 0;
-        for(ItemDTO item : soldItems){
-            totalCost+=item.getPrice();
-        }
-        return totalCost;
+    private String currentSoldItemString(Sale sale){
+        StringBuilder builder = new StringBuilder();
+        ItemDTO lastScannedItem = sale.getSoldItems().getLast();
+        builder.append("Add 1 item with item id ");
+        builder.append(lastScannedItem.getID());
+        builder.append(":");
+        endSection(builder);
+        builder.append(lastScannedItem);
+
+        endSection(builder);
+        builder.append("Total cost (incl VAT): ");
+        builder.append(sale.totalCost());
+        appendCurrency(builder);
+        builder.append("Total VAT: ");
+        builder.append(sale.totalVAT());
+        appendCurrency(builder);
+        endSection(builder);
+        return builder.toString();
     }
+
+    private void endSection(StringBuilder builder){
+        builder.append("\n");
+    }
+
+    private void appendCurrency(StringBuilder builder){
+        builder.append(" SEK");
+        endSection(builder);
+    }
+
 }

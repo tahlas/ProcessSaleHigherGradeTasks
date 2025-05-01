@@ -31,11 +31,11 @@ public class Receipt {
         appendItemsOnReceipt(builder);
 
         builder.append("Total: ");
-        builder.append(sale.totalItemCost());
+        builder.append(sale.totalCost());
         endSection(builder);
 
         builder.append("VAT: ");
-        builder.append(sale.totalVat());
+        builder.append(sale.totalVAT());
 
         builder.append("Cash: ");
 

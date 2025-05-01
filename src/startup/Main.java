@@ -25,7 +25,10 @@ public class Main {
 
         //osäker om de ska vara här
         contr.startSale();
-        contr.scanItem("abc123", 1);
+        contr.scanItem("abc123");
+        contr.scanItem("abc123");
+        contr.scanItem("def456");
+
 
     }
 }
