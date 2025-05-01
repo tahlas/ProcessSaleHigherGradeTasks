@@ -23,10 +23,6 @@ public class View {
      * Performs a fake sale by calling all system operations in the controller.
      */
     public void runFakeExecution(){
-//        contr.startSale();
-//        System.out.println("A new sale has been started.");
-//        contr.scanItem("abc123");
-
         contr.startSale();
         contr.scanItem("abc123");
         contr.scanItem("abc123");

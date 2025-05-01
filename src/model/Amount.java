@@ -15,14 +15,19 @@ public final class Amount {
     }
 
     /**
-     * Calculates the sum of two amounts.
-     * @param other The amount to add.
-     * @return The sum of the two amounts.
+     * Calculates the sum of two terms.
+     * @param other The other term to add.
+     * @return The sum of the two terms.
      */
     public Amount add(Amount other){
         return new Amount(this.amount + other.amount);
     }
 
+    /**
+     * Mulltiplies two factors.
+     * @param other The other factor.
+     * @return The product from the multiplication.
+     */
     public Amount multiply(Amount other){
         return new Amount(this.amount * other.amount);
     }
