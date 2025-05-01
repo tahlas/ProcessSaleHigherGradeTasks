@@ -6,12 +6,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * One single sale made by one single customer and payed with one payment.
+ * One single sale made by one single customer and paid with one payment.
  */
 public class Sale {
     private LocalTime saleTime;
     private final Receipt receipt;
-    private final ArrayList<ItemDTO> soldItems;//osäker om den behövs
+    private final ArrayList<ItemDTO> soldItems;
 
     /**
      * Creates a new instance and saves the time of the sale.
@@ -20,13 +20,6 @@ public class Sale {
         setTimeOfSale();
         this.receipt = new Receipt(saleTime, this);
         this.soldItems = new ArrayList<>();
-    }
-
-    /**
-     * Sets the time of the sale.
-     */
-    private void setTimeOfSale(){
-        saleTime = LocalTime.now();
     }
 
     /**
@@ -58,7 +51,7 @@ public class Sale {
      * @param specificItem The specific item to calculate the total price for.
      * @return The total price for a specific item.
      */
-    public int getTotalItemPrice(ItemDTO specificItem){
+    public double getTotalItemPrice(ItemDTO specificItem){
         return getQuantity(specificItem) * specificItem.getPrice();
     }
 
@@ -98,7 +91,7 @@ public class Sale {
         for(ItemDTO item : soldItems){
             sumOfTotalVAT += item.getPrice() * item.getVATInDecimal();
         }
-        return sumOfTotalVAT;
+        return roundToTwoDecimals(sumOfTotalVAT);
     }
 
 
@@ -111,7 +104,19 @@ public class Sale {
         for(ItemDTO item : soldItems){
             sumOfTotalCost += item.getPrice();
         }
-        return sumOfTotalCost;
+        return roundToTwoDecimals(sumOfTotalCost);
+    }
+
+    private double roundToTwoDecimals(double value){
+        double scale = Math.pow(10, 2);
+        return Math.round(value * scale) / scale;
+    }
+
+    /**
+     * Sets the time of the sale.
+     */
+    private void setTimeOfSale(){
+        saleTime = LocalTime.now();
     }
 
 
