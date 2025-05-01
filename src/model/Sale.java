@@ -23,7 +23,7 @@ public class Sale {
     }
 
     /**
-     * Adds a scanned item to the list of sold items.
+     * Adds a scanned item to the list of sold items..
      * @param itemDTO The item to add to the sale.
      */
     public void addItem(ItemDTO itemDTO){
