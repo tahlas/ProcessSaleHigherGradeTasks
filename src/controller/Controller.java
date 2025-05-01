@@ -41,8 +41,6 @@ public class Controller {
         sale.addItem(scannedItem);
         //item.addItemToList(scannedItem); //osäker om detta ska vara här
         register.presentCurrentSoldItem(item.getSoldItems());
-
-
     }
 
 

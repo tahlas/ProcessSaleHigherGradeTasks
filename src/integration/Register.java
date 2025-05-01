@@ -11,7 +11,7 @@ public class Register {
      */
     public void presentCurrentSoldItem(ArrayList<ItemDTO> soldItems) {
         ItemDTO recentlyScannedItem = soldItems.getLast();
-        System.out.println("Add 1 item with item id " + recentlyScannedItem.getID() + "\n");
+        System.out.println("Add 1 item with item id " + recentlyScannedItem.getID() + ":\n");
         System.out.println(recentlyScannedItem);
         System.out.println("Total cost (incl VAT): " + runningTotal(soldItems));
     }
@@ -28,12 +28,4 @@ public class Register {
         }
         return totalCost;
     }
-
-    public void addPayment(CashPayment payment){
-
-    }
-
-
-
-
 }

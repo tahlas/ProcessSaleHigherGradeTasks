@@ -11,12 +11,14 @@ import java.util.ArrayList;
 
 //konstruktor utan parameter
 public class Receipt {
-    private ArrayList <ItemDTO> itemsOnReceipt;
+    //private ArrayList <ItemDTO> itemsOnReceipt;
     private LocalTime saleTime;
+    private final Sale sale;
 
-    public Receipt(LocalTime saleTime){
+    public Receipt(LocalTime saleTime, Sale sale){
         this.saleTime = saleTime;
-        this.itemsOnReceipt = new ArrayList<ItemDTO>();
+        this.sale = sale;
+        //this.itemsOnReceipt = new ArrayList<ItemDTO>();
     }
 
     public void addItemToReceipt(ItemDTO item) {

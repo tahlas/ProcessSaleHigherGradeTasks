@@ -1,12 +1,10 @@
 package integration;
 
-import model.Amount;
-
 public class ItemDTO {
     //kanske borde ha quantity
     private final String ID;
     private final String name;
-    private final int price; //osäker om int eller Amount
+    private final int price; //osäker om int eller Amount eller double
     private final double VAT; //int?
     private final String description;
     private int quantity; //osäker om den behövs
@@ -91,7 +89,15 @@ public class ItemDTO {
      * @return The total VAt for the item.
      */
     public double getTotalItemVAT(){
-        return VAT * getTotalItemPrice();
+        return getVATInDecimal() * getTotalItemPrice();
+    }
+
+    /**
+     * Calculates the VAT
+     * @return
+     */
+    private double getVATInDecimal(){
+        return VAT/100;
     }
 
 

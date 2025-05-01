@@ -11,6 +11,7 @@ public class InventoryHandler {
     InventoryHandler(){
         addItems();
     }
+
     /**
      * Checks if there is an item with the parsed item ID.
      * @param itemID The ID of the item to search for in the inventory.

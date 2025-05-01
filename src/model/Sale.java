@@ -11,14 +11,15 @@ import java.util.ArrayList;
 public class Sale {
     private LocalTime saleTime;
     private Receipt receipt;
-    //private ArrayList<ItemDTO> soldItems;//osäker om den behövs
+    private ArrayList<ItemDTO> soldItems;//osäker om den behövs
 
     /**
      * Creates a new instance and saves the time of the sale.
      */
     public Sale(){
         setTimeOfSale();
-        receipt = new Receipt(saleTime);
+        this.receipt = new Receipt(saleTime);
+        this.soldItems = new ArrayList<>();
     }
 
     /**
@@ -33,8 +34,8 @@ public class Sale {
      * @param itemDTO The item to add to the sale.
      */
     public void addItem(ItemDTO itemDTO){
-        //soldItems.add(itemDTO);
-        receipt.addItemToReceipt(itemDTO);
+        soldItems.add(itemDTO);
+        //receipt.addItemToReceipt(itemDTO);
     }
 
 //    /**

@@ -4,10 +4,10 @@ package integration;
  * This creates the other handlers in the application.
  */
 public class HandlerCreator {
-    private InventoryHandler inventoryHandler;
-    //discount ska inte vara med
+    private final InventoryHandler inventoryHandler;
+
     public HandlerCreator() {
-        InventoryHandler inventoryHandler = new InventoryHandler();
+        this.inventoryHandler = new InventoryHandler();
     }
     public InventoryHandler getInventoryHandler() {
         return inventoryHandler;

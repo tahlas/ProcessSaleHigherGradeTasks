@@ -24,8 +24,8 @@ public class Main {
         //view.runFakeExecution();
 
         //osäker om de ska vara här
-        //contr.startSale();
-        //contr.scanItem("abc123", 1);
+        contr.startSale();
+        contr.scanItem("abc123", 1);
 
     }
 }
