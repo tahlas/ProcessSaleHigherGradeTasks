@@ -11,8 +11,7 @@ import java.util.ArrayList;
 public class Sale {
     private LocalTime saleTime;
     private Receipt receipt;
-    private int price;
-    private ArrayList<ItemDTO> soldItems;//osäker om den behövs
+    //private ArrayList<ItemDTO> soldItems;//osäker om den behövs
 
     /**
      * Creates a new instance and saves the time of the sale.
@@ -34,21 +33,21 @@ public class Sale {
      * @param itemDTO The item to add to the sale.
      */
     public void addItem(ItemDTO itemDTO){
-        soldItems.add(itemDTO);
+        //soldItems.add(itemDTO);
         receipt.addItemToReceipt(itemDTO);
     }
 
-    /**
-     * Adds a scanned item multiple times to the list of sold items.
-     * @param itemDTO The item to add to the sale.
-     * @param quantity The amount of items to add to the list of sold items.
-     */
-    public void addItem(ItemDTO itemDTO, int quantity){
-        for(int i = 0; i < quantity; i++){
-            soldItems.add(itemDTO);
-        }
-        receipt.addItemToReceipt(itemDTO, quantity);
-    }
+//    /**
+//     * Adds a scanned item multiple times to the list of sold items.
+//     * @param itemDTO The item to add to the sale.
+//     * @param quantity The amount of items to add to the list of sold items.
+//     */
+//    public void addItem(ItemDTO itemDTO, int quantity){
+//        for(int i = 0; i < quantity; i++){
+//            soldItems.add(itemDTO);
+//        }
+//        receipt.addItemToReceipt(itemDTO, quantity);
+//    }
 
     public Receipt getReceipt(){
         return receipt;
