@@ -18,7 +18,7 @@ public class Sale {
      */
     public Sale(){
         setTimeOfSale();
-        this.receipt = new Receipt(saleTime);
+        this.receipt = new Receipt(saleTime, this);
         this.soldItems = new ArrayList<>();
     }
 
@@ -38,24 +38,51 @@ public class Sale {
         //receipt.addItemToReceipt(itemDTO);
     }
 
-//    /**
-//     * Adds a scanned item multiple times to the list of sold items.
-//     * @param itemDTO The item to add to the sale.
-//     * @param quantity The amount of items to add to the list of sold items.
-//     */
-//    public void addItem(ItemDTO itemDTO, int quantity){
-//        for(int i = 0; i < quantity; i++){
-//            soldItems.add(itemDTO);
-//        }
-//        receipt.addItemToReceipt(itemDTO, quantity);
-//    }
-
     public Receipt getReceipt(){
         return receipt;
     }
 
+    public ArrayList<ItemDTO> getSoldItems() {
+        return soldItems;
+    }
 
+    public int getTotalItemPrice(ItemDTO specificItem){
+        return getQuantity(specificItem) * specificItem.getPrice();
+    }
 
+    public int getQuantity(ItemDTO specificItem){
+        int numberOfSpecificItemID = 0;
+        String specificItemID = specificItem.getID();
+        String itemInListID;
+        for(ItemDTO item : soldItems){
+            itemInListID = item.getID();
+            if(itemIDIsEqual(specificItemID, itemInListID))
+                numberOfSpecificItemID++;
+        }
+        return numberOfSpecificItemID;
+    }
 
+    private boolean itemIDIsEqual(String firstItemID, String secondItemID){
+        return firstItemID.equals(secondItemID);
+    }
 
+    /**
+     * Calculates the total VAT for the sale.
+     * @return The total VAT.
+     */
+    public double totalVat(){
+        double sumOfTotalVAT = 0;
+        for(ItemDTO item : soldItems){
+            sumOfTotalVAT += item.getPrice() * item.getVATInDecimal();
+        }
+        return sumOfTotalVAT;
+    }
+
+    public double totalItemCost(){
+        double sumOfTotalCost = 0;
+        for(ItemDTO item : soldItems){
+            sumOfTotalCost += item.getPrice();
+        }
+        return sumOfTotalCost;
+    }
 }

@@ -7,43 +7,13 @@ public class ItemDTO {
     private final int price; //osäker om int eller Amount eller double
     private final double VAT; //int?
     private final String description;
-    private int quantity; //osäker om den behövs
 
-    public ItemDTO(String ID, String name, int price, double VAT, String description, int quantity) {
+    public ItemDTO(String ID, String name, int price, double VAT, String description) {
         this.ID = ID;
         this.name = name;
         this.price = price;
         this.VAT = VAT;
         this.description = description;
-        this.quantity = quantity;
-    }
-
-    /**
-     * This is used to get the item ID.
-     * @return The item's ID.
-     */
-    public String getID() {
-        return ID;
-    }
-
-    /**
-     * This is used to get the price of the item.
-     * @return The item's price.
-     */
-    public int getPrice() {
-        return this.price;
-    }
-
-    /**
-     * This is used to get the name of the item.
-     * @return The item's name.
-     */
-    public String getName() {
-        return this.name;
-    }
-
-    public int getQuantity(){
-        return this.quantity;
     }
 
     /**
@@ -77,26 +47,34 @@ public class ItemDTO {
     }
 
     /**
-     * Calculates the total price for buying a certain amount of the same item.
-     * @return the total price for buying a certain amount of the same item.
+     * This is used to get the item ID.
+     * @return The item's ID.
      */
-    public int getTotalItemPrice(){
-        return price * quantity;
+    public String getID() {
+        return ID;
     }
 
     /**
-     * Calculates the total VAT for the item.
-     * @return The total VAt for the item.
+     * This is used to get the price of the item.
+     * @return The item's price.
      */
-    public double getTotalItemVAT(){
-        return getVATInDecimal() * getTotalItemPrice();
+    public int getPrice() {
+        return this.price;
+    }
+
+    /**
+     * This is used to get the name of the item.
+     * @return The item's name.
+     */
+    public String getName() {
+        return this.name;
     }
 
     /**
      * Calculates the VAT
-     * @return
+     * @return The VAT in decimal form.
      */
-    private double getVATInDecimal(){
+    public double getVATInDecimal(){
         return VAT/100;
     }
 

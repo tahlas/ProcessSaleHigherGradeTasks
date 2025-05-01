@@ -34,15 +34,15 @@ public class InventoryHandler {
      * @return An invalid item.
      */
     private ItemDTO invalidItem(){
-        return new ItemDTO("0", "0",0, 0, "0", 0);
+        return new ItemDTO("0", "0",0, 0, "0");
     }
 
     /**
      * Adds items to the inventory.
      */
     private void addItems(){
-        inventory.add(new ItemDTO("abc123", "BigWheel Oatmeal", 29,6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 1));
-        inventory.add(new ItemDTO("abc123", "BigWheel Oatmeal", 29,6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free", 1));
-        inventory.add(new ItemDTO("def456", "YouGoGo Blueberry", 14,6, "YouGoGo Blueberry 240 g, low sugar youghurt, blueberry flavour", 1));
+        inventory.add(new ItemDTO("abc123", "BigWheel Oatmeal", 29,6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free"));
+        inventory.add(new ItemDTO("abc123", "BigWheel Oatmeal", 29,6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free"));
+        inventory.add(new ItemDTO("def456", "YouGoGo Blueberry", 14,6, "YouGoGo Blueberry 240 g, low sugar youghurt, blueberry flavour"));
     }
 }

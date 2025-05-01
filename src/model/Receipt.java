@@ -8,32 +8,15 @@ import java.util.ArrayList;
 /**
  * Represents one receipt, which proves the payment of one sale.
  */
-
-//konstruktor utan parameter
 public class Receipt {
-    //private ArrayList <ItemDTO> itemsOnReceipt;
+    private ArrayList <ItemDTO> itemsOnReceipt;
     private LocalTime saleTime;
     private final Sale sale;
 
     public Receipt(LocalTime saleTime, Sale sale){
         this.saleTime = saleTime;
+        this.itemsOnReceipt = sale.getSoldItems();
         this.sale = sale;
-        //this.itemsOnReceipt = new ArrayList<ItemDTO>();
-    }
-
-    public void addItemToReceipt(ItemDTO item) {
-        itemsOnReceipt.add(item);
-    }
-
-    /**
-     * Adds multiple of the same item to the receipt.
-     * @param itemDTO The item to add to the receipt.
-     * @param quantity The quantity of the item to add.
-     */
-    public void addItemToReceipt(ItemDTO itemDTO, int quantity) {
-        for(int i = 0; i < quantity; i++) {
-            itemsOnReceipt.add(itemDTO);
-        }
     }
 
     /**
@@ -44,15 +27,15 @@ public class Receipt {
         StringBuilder builder = new StringBuilder();
         builder.append("Time of Sale: ");
         appendLine(builder, String.valueOf(saleTime));
-        appendNewLine(builder);
+        endSection(builder);
         appendItemsOnReceipt(builder);
 
         builder.append("Total: ");
-        appendTotalCost(builder);
-        appendNewLine(builder);
+        builder.append(sale.totalItemCost());
+        endSection(builder);
 
         builder.append("VAT: ");
-        appendTotalVAT(builder);
+        builder.append(sale.totalVat());
 
         builder.append("Cash: ");
 
@@ -69,37 +52,13 @@ public class Receipt {
             builder.append(item.getName());
             builder.append(" ");
 
-            builder.append(item.getQuantity());
+            builder.append(sale.getQuantity(item));
             builder.append(" x ");
             builder.append(item.getPrice());
 
-            builder.append(item.getTotalItemPrice());
+            builder.append(sale.getTotalItemPrice(item));
             appendLine(builder,"SEK");
         }
-    }
-
-    /**
-     * Appends the total cost.
-     * @param builder The StringBuilder to append the total cost to.
-     */
-    private void appendTotalCost(StringBuilder builder) {
-        int sumOfCost = 0;
-        for(ItemDTO item : itemsOnReceipt) {
-            sumOfCost += item.getTotalItemPrice();
-        }
-        builder.append(sumOfCost);
-    }
-
-    /**
-     * Appends the total VAT.
-     * @param builder The StringBuilder to append the total VAT to.
-     */
-    private void appendTotalVAT(StringBuilder builder) {
-        double sumOfVAT = 0;
-        for(ItemDTO item : itemsOnReceipt) {
-            sumOfVAT += item.getTotalItemPrice();
-        }
-        builder.append(sumOfVAT);
     }
 
     /**
@@ -109,26 +68,16 @@ public class Receipt {
      */
     private void appendLine(StringBuilder builder, String line){
         builder.append(line);
-        appendNewLine(builder);
-    }
-
-    /**
-     * Appends a tab to a StringBuilder.
-     * @param builder The StringBuilder to append the tab to.
-     */
-    private void appendTab(StringBuilder builder){
-        builder.append("\t");
+        endSection(builder);
     }
 
     /**
      * Appends a new line to the StringBuilder.
      * @param builder The StringBuilder to append the new line to.
      */
-    private void appendNewLine(StringBuilder builder){
-        builder.append("\n");
-    }
-
     private void endSection(StringBuilder builder){
         builder.append("\n");
     }
+
+
 }
