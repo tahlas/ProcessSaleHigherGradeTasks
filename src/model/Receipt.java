@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * Represents one receipt, which proves the payment of one sale.
+ * Represents one receipt, which proves the payment of one sale..
  */
 public class Receipt {
     private ArrayList <ItemDTO> itemsOnReceipt;
