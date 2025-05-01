@@ -10,12 +10,12 @@ public class ItemDTO {
     private final String name;
     private final double VAT; //procent
     private final String description;
-    private final Amount amount;
+    private final Amount price;
 
-    public ItemDTO(String ID, String name, Amount amount, double VAT, String description) {
+    public ItemDTO(String ID, String name, Amount price, double VAT, String description) {
         this.ID = ID;
         this.name = name;
-        this.amount = amount;
+        this.price = price;
         this.VAT = VAT;
         this.description = description;
     }
@@ -32,7 +32,7 @@ public class ItemDTO {
         builder.append("Item name: ");
         appendLine(builder, name);
         builder.append("Item cost: ");
-        appendLine(builder, amount.toString());
+        appendLine(builder, price.toString());
         builder.append("VAT: ");
         builder.append(VAT);
         appendLine(builder, "%");
@@ -56,7 +56,7 @@ public class ItemDTO {
      * @return The item's ID.
      */
     public String getID() {
-        return ID;
+        return this.ID;
     }
 
     /**
@@ -64,7 +64,7 @@ public class ItemDTO {
      * @return The item's price.
      */
     public Amount getPrice() {
-        return amount;
+        return this.price;
     }
 
     /**
@@ -81,13 +81,5 @@ public class ItemDTO {
      */
     public double getVATInDecimal(){
         return VAT/100;
-    }
-
-    /**
-     * Gets the amount for the item.
-     * @return The amount for the item.
-     */
-    public Amount getAmount(){
-        return this.amount;
     }
 }

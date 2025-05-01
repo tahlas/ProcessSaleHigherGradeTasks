@@ -84,7 +84,7 @@ public class Sale {
 //    }
     public Amount getTotalItemPrice(ItemDTO specificItem){
         Amount quantity = new Amount(getQuantity(specificItem));
-        Amount specificItemPrice = specificItem.getAmount();
+        Amount specificItemPrice = specificItem.getPrice();
         return specificItemPrice.multiply(quantity);
 
     }
@@ -120,7 +120,11 @@ public class Sale {
     public Amount totalVAT(){
         Amount sumOfTotalVat = new Amount(0);
         for(ItemDTO item : soldItems){
-            sumOfTotalVat = sumOfTotalVat.add(item.getAmount());
+            Amount itemPrice = item.getPrice();
+            Amount VATInDecimal = new Amount(item.getVATInDecimal());
+            Amount itemVATCost = itemPrice.multiply(VATInDecimal);
+            sumOfTotalVat = sumOfTotalVat.add(itemVATCost);
+            //sumOfTotalVat = sumOfTotalVat.add(item.getPrice()); //detta är fel
         }
         return sumOfTotalVat;
     }
@@ -144,19 +148,9 @@ public class Sale {
     public Amount totalCost_Amount(){
         Amount sumOfTotalCost = new Amount(0);
         for(ItemDTO item : soldItems){
-            sumOfTotalCost = sumOfTotalCost.add(item.getAmount());
+            sumOfTotalCost = sumOfTotalCost.add(item.getPrice());
         }
         return sumOfTotalCost;
-    }
-
-    /**
-     * Rounds a double to two decimals.
-     * @param value The double to round.
-     * @return The rounded double.
-     */
-    private double roundToTwoDecimals(double value){
-        double scale = Math.pow(10, 2);
-        return Math.round(value * scale) / scale;
     }
 
     /**

@@ -10,9 +10,9 @@ import model.Receipt;
  * This is the application's only controller. All calls to the model pass through this class.
  */
 public class Controller {
-    private Printer printer;
-    private Register register;
-    private HandlerCreator handlerCreator;
+    private final Printer printer;
+    private final Register register;
+    private final HandlerCreator handlerCreator;
 
     public Controller(Printer printer, Register register, HandlerCreator handlerCreator) {
         this.printer = printer;
@@ -51,6 +51,7 @@ public class Controller {
         Receipt receipt = sale.getReceipt();//1.5
         printer.printReceipt(receipt);
         register.presentChangeToGiveToCustomer(sale);
+        register.addPaymentToRegister(sale.totalCost_Amount());
     }
 
 }

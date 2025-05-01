@@ -14,7 +14,7 @@ public class Register {
      * Creates a new instance and sets the amount of cash in the register.
      */
     public Register(){
-        cashInRegister = new Amount(1000);
+        this.cashInRegister = new Amount(1000);
     }
 
     /**
@@ -25,9 +25,22 @@ public class Register {
         System.out.println(printString);
     }
 
+    /**
+     * Shows the change that the cashier must give to the customer.
+     * @param sale The sale where the change exists in.
+     */
     public void presentChangeToGiveToCustomer(Sale sale){
         CashPayment payment = sale.getPayment();
         System.out.println("Change to give the customer: " + payment.getChange());
+    }
+
+    /**
+     * Calculates the cash in the register after the change has been given to the customer.
+     * @param amountToIncreaseWith The amount to add to the register.
+     */
+    public void addPaymentToRegister(Amount amountToIncreaseWith){
+        this.cashInRegister = cashInRegister.add(amountToIncreaseWith);
+        System.out.println("Cash in register: " + cashInRegister);
     }
 
     private String currentScannedItemString(Sale sale){
