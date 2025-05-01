@@ -29,6 +29,7 @@ public class Register {
         builder.append("Total cost (incl VAT): ");
         builder.append(sale.totalCost());
         appendCurrency(builder);
+        endSection(builder);
         builder.append("Total VAT: ");
         builder.append(sale.totalVAT());
         appendCurrency(builder);
@@ -42,7 +43,6 @@ public class Register {
 
     private void appendCurrency(StringBuilder builder){
         builder.append(" SEK");
-        endSection(builder);
     }
 
 }
