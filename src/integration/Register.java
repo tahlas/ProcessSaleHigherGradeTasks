@@ -10,6 +10,11 @@ import java.util.ArrayList;
  * This represents the register.
  */
 public class Register {
+    private Amount cashInRegister;
+
+    public Register(){
+        cashInRegister = new Amount(1000);
+    }
 
     /**
      * Shows information about the item that is scanned and the running total (including VAT).
@@ -22,10 +27,12 @@ public class Register {
     private String currentSoldItemString(Sale sale){
         StringBuilder builder = new StringBuilder();
         ItemDTO lastScannedItem = sale.getSoldItems().getLast();
+
         builder.append("Add 1 item with item id ");
         builder.append(lastScannedItem.getID());
         builder.append(":");
         endSection(builder);
+
         builder.append(lastScannedItem);
 
         endSection(builder);
@@ -33,10 +40,12 @@ public class Register {
         builder.append(sale.totalCost());
         appendCurrency(builder);
         endSection(builder);
+
         builder.append("Total VAT: ");
         builder.append(sale.totalVAT());
         appendCurrency(builder);
         endSection(builder);
+
         return builder.toString();
     }
 
