@@ -9,7 +9,7 @@ public class ItemDTO {
     private final String ID;
     private final String name;
     private final double price; //osäker om Amount eller double
-    private final double VAT;
+    private final double VAT; //procent
     private final String description;
     private final Amount amount;
 
@@ -85,6 +85,10 @@ public class ItemDTO {
         return VAT/100;
     }
 
+    /**
+     * Gets the amount for the item.
+     * @return The amount for the item.
+     */
     public Amount getAmount(){
         return this.amount;
     }

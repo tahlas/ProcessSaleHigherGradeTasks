@@ -1,10 +1,7 @@
 package integration;
 
 import model.Amount;
-import model.CashPayment;
 import model.Sale;
-
-import java.util.ArrayList;
 
 /**
  * This represents the register.
@@ -12,6 +9,9 @@ import java.util.ArrayList;
 public class Register {
     private Amount cashInRegister;
 
+    /**
+     * Creates a new instance and sets the amount of cash in the register.
+     */
     public Register(){
         cashInRegister = new Amount(1000);
     }
@@ -19,12 +19,12 @@ public class Register {
     /**
      * Shows information about the item that is scanned and the running total (including VAT).
      */
-    public void presentCurrentSoldItem(Sale sale) {
-        String printString = currentSoldItemString(sale);
+    public void presentCurrentScannedItem(Sale sale) {
+        String printString = currentScannedItemString(sale);
         System.out.println(printString);
     }
 
-    private String currentSoldItemString(Sale sale){
+    private String currentScannedItemString(Sale sale){
         StringBuilder builder = new StringBuilder();
         ItemDTO lastScannedItem = sale.getSoldItems().getLast();
 

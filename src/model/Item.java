@@ -16,7 +16,7 @@ public class Item {
      * @param payment The payment the customer gives
      */
     public void payForItems(CashPayment payment){
-        payment.calculateTotalCost(soldItems);//1.3.1
+        //payment.calculateTotalCost(soldItems);//1.3.1
     }
 
 

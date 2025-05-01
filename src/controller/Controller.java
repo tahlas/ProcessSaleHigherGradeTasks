@@ -39,7 +39,7 @@ public class Controller {
         InventoryHandler inventoryHandler = handlerCreator.getInventoryHandler(); //osäker om den bör vara såhär
         ItemDTO scannedItem = inventoryHandler.getItemDTO(itemID);
         sale.addItem(scannedItem);
-        register.presentCurrentSoldItem(sale);
+        register.presentCurrentScannedItem(sale);
     }
 
 
@@ -50,6 +50,7 @@ public class Controller {
     public void endSaleAndPay(Amount amountPaid){
         //sale.endSale(); //1.1 tror inte den ska göra något
         CashPayment payment = new CashPayment(amountPaid); //1.2
+        sale.payForSale(payment);
         //item.payForItems(payment); kanske fixar senare
         Receipt receipt = sale.getReceipt();//1.5
         printer.printReceipt(receipt);

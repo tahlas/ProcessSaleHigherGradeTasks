@@ -12,6 +12,7 @@ public class Sale {
     private LocalTime saleTime;
     private Receipt receipt;
     private final ArrayList<ItemDTO> soldItems;
+    private CashPayment payment;
 
     /**
      * Creates a new instance and saves the time of the sale.
@@ -19,6 +20,31 @@ public class Sale {
     public Sale(){
         setTimeOfSale();
         this.soldItems = new ArrayList<>();
+    }
+
+    /**
+     * This pays for the sale.
+     * @param payment The payment for the sale.
+     */
+    public void payForSale(CashPayment payment){
+        payment.calculateTotalCost(this);
+        this.payment = payment;
+    }
+
+    /**
+     * Gets the payment for the sale.
+     * @return The payment for the sale.
+     */
+    public CashPayment getPayment() {
+        return payment;
+    }
+
+    /**
+     * Gets the amount paid.
+     * @return The amount paid.
+     */
+    public Amount getPaidAmount(){
+        return payment.getPaidAmount();
     }
 
     /**
@@ -97,6 +123,11 @@ public class Sale {
         }
         return roundToTwoDecimals(sumOfTotalCost);
     }
+
+    /**
+     * Calculates the total cost of the sale.
+     * @return The total cost of the sale (so far).
+     */
     public Amount totalCost_Amount(){
         Amount sumOfTotalCost = new Amount(0);
         for(ItemDTO item : soldItems){

@@ -30,6 +30,8 @@ public class Receipt {
      */
     public String createReceiptString() {
         StringBuilder builder = new StringBuilder();
+        CashPayment payment = sale.getPayment();
+
         appendLine(builder, "------------------ Begin Receipt -------------------");
         builder.append("Time of Sale: ");
         appendLine(builder, String.valueOf(saleTime));
@@ -38,17 +40,17 @@ public class Receipt {
         endSection(builder);
 
         builder.append("Total: ");
-        builder.append(sale.totalCost());
+        builder.append(payment.getTotalCostForSale());//builder.append(sale.totalCost());
         endSection(builder);
 
         builder.append("VAT: ");
         appendLine(builder, String.valueOf(sale.totalVAT()));
 
         builder.append("Cash: ");
-        builder.append("PLACEHOLDER CASH");
+        builder.append(payment.getPaidAmount());
         appendLine(builder, " SEK");
         builder.append("Change: ");
-        builder.append("PLACEHOLDER CHANGE");
+        builder.append(payment.getChange());
         appendLine(builder, " SEK");
         appendLine(builder, "------------------ End receipt ---------------------");
 
