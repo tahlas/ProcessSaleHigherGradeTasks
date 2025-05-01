@@ -4,13 +4,13 @@ package model;
  * This represents an amount of money.
  */
 public final class Amount {
-    private final int amount;
+    private final double amount;
 
     public Amount() {
         this(0);
     }
 
-    public Amount(int amount){
+    public Amount(double amount){
         this.amount = amount;
     }
 
