@@ -56,7 +56,7 @@ public class Register {
 
         endSection(builder);
         builder.append("Total cost (incl VAT): ");
-        builder.append(sale.totalCost_Amount()); //något fel är här
+        builder.append(sale.totalCostAmount()); //något fel är här
         appendCurrency(builder);
         endSection(builder);
 

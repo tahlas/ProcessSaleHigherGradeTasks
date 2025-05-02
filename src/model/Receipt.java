@@ -10,16 +10,13 @@ import java.util.ArrayList;
  */
 public class Receipt {
     private final ArrayList <ItemDTO> itemsOnReceipt;
-    private final LocalTime saleTime;
     private final Sale sale;
 
     /**
      * Creates a new instance.
-     * @param saleTime The time the sale started.
      * @param sale The actual sale.
      */
-    public Receipt(LocalTime saleTime, Sale sale){
-        this.saleTime = saleTime;
+    public Receipt(Sale sale){
         this.itemsOnReceipt = sale.getSoldItems();
         this.sale = sale;
     }
@@ -34,7 +31,9 @@ public class Receipt {
 
         appendLine(builder, "------------------ Begin Receipt -------------------");
         builder.append("Time of Sale: ");
-        appendLine(builder, String.valueOf(saleTime));
+        builder.append(sale.getDateOfSale());
+        builder.append(" ");
+        appendLine(builder, getTimeOfSale());
         endSection(builder);
         appendItemsOnReceipt(builder);
         endSection(builder);
@@ -55,6 +54,15 @@ public class Receipt {
         appendLine(builder, "------------------ End receipt ---------------------");
 
         return builder.toString();
+    }
+
+    /**
+     * Gets the time of the sale as a String.
+     * @return The time of the sale as a String.
+     */
+    private String getTimeOfSale(){
+        LocalTime timeOfSale = sale.getTimeOfSale();
+        return timeOfSale.toString().substring(0, 8);
     }
 
     /**

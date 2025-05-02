@@ -2,6 +2,7 @@ package model;
 
 import integration.ItemDTO;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
  * One single sale made by one single customer and paid with one payment.
  */
 public class Sale {
+    private LocalDate saleDate;
     private LocalTime saleTime;
     private Receipt receipt;
     private final ArrayList<ItemDTO> soldItems;
@@ -18,6 +20,7 @@ public class Sale {
      * Creates a new instance and saves the time of the sale.
      */
     public Sale(){
+        setDateOfSale();
         setTimeOfSale();
         this.soldItems = new ArrayList<>();
     }
@@ -27,7 +30,7 @@ public class Sale {
      * @param payment The payment for the sale.
      */
     public void payForSale(CashPayment payment){
-        Amount total = totalCost_Amount();
+        Amount total = totalCostAmount();
         payment.setTotalCostForSale(total);
         this.payment = payment;
     }
@@ -54,7 +57,7 @@ public class Sale {
      */
     public Receipt getReceipt(){
         if(receiptDoesNotExist()){
-            receipt = new Receipt(saleTime, this);
+            receipt = new Receipt(this);
         }
         return receipt;
     }
@@ -103,21 +106,31 @@ public class Sale {
     public Amount totalVAT(){
         Amount sumOfTotalVat = new Amount(0);
         for(ItemDTO item : soldItems){
-            Amount itemPrice = item.getPrice();
-            Amount VATInDecimal = new Amount(item.getVATRateInDecimal());
-            Amount itemVATCost = itemPrice.multiply(VATInDecimal);
-            sumOfTotalVat = sumOfTotalVat.add(itemVATCost);
-
-
+            Amount itemVATRate = new Amount(item.getVATRatePercentage());
+            Amount itemVATAmount = calculateVATAmount(item.getPrice(), itemVATRate);
+            sumOfTotalVat = sumOfTotalVat.add(itemVATAmount);
         }
         return sumOfTotalVat;
+    }
+
+    /**
+     * Calculates the VAT amount for a specific item.
+     * @param itemPriceIncludingVAT The price of the item including VAT.
+     * @param VATRate The VAT rate of the item.
+     * @return The VAT amount for a specific item.
+     */
+    private Amount calculateVATAmount(Amount itemPriceIncludingVAT, Amount VATRate){
+        Amount oneHundred = new Amount(100);
+        Amount numerator = itemPriceIncludingVAT.multiply(VATRate);
+        Amount denominator = oneHundred.add(VATRate);
+        return numerator.divide(denominator);
     }
 
     /**
      * Calculates the total cost of the sale.
      * @return The total cost of the sale (so far).
      */
-    public Amount totalCost_Amount(){
+    public Amount totalCostAmount(){
         Amount sumOfTotalCost = new Amount(0);
         for(ItemDTO item : soldItems){
             sumOfTotalCost = sumOfTotalCost.add(item.getPrice());
@@ -130,6 +143,14 @@ public class Sale {
      */
     private void setTimeOfSale(){
         saleTime = LocalTime.now();
+    }
+
+    public LocalTime getTimeOfSale(){
+        return saleTime;
+    }
+
+    public LocalDate getDateOfSale(){
+        return saleDate;
     }
 
     /**
@@ -149,4 +170,22 @@ public class Sale {
     private boolean receiptDoesNotExist(){
         return receipt == null;
     }
+
+    /**
+     * Sets the date of the sale.
+     */
+    private void setDateOfSale(){
+        saleDate = LocalDate.now();
+    }
+
+//    public SaleDTO createDTO(){
+//        return new SaleDTO(
+//                soldItems,
+//                payment,
+//                totalCost_Amount(),
+//                totalVAT(),
+//                saleDate,
+//                saleTime
+//        );
+//    }
 }

@@ -55,9 +55,9 @@ class ItemDTOTest {
     }
 
     @Test
-    void testGetVATRateInDecimal() {
-        double expectedOutput = 0.06;
-        double actualOutput = itemDTO.getVATRateInDecimal();
+    void testGetVATRatePercentage () {
+        double expectedOutput = 6;
+        double actualOutput = itemDTO.getVATRatePercentage();
         assertEquals(expectedOutput, actualOutput, "The VAT should be equal");
     }
 }

@@ -8,7 +8,7 @@ import model.Amount;
 public class ItemDTO {
     private final String ID;
     private final String name;
-    private final double VATRatePercentage; //procent
+    private final double VATRatePercentage;
     private final String description;
     private final Amount price;
 
@@ -76,10 +76,10 @@ public class ItemDTO {
     }
 
     /**
-     * Calculates the VAT
-     * @return The VAT in decimal form.
+     * Gets the VAT rate percentage.
+     * @return The VAT rate percentage.
      */
-    public double getVATRateInDecimal(){
-        return VATRatePercentage/100;
+    public double getVATRatePercentage() {
+        return VATRatePercentage;
     }
 }

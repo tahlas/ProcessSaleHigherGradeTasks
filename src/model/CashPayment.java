@@ -1,7 +1,7 @@
 package model;
 
 /**
- * This is the payment the customer provides to pay for the sale..
+ * This is the payment the customer provides to pay for the sale.
  */
 public class CashPayment {
     private final Amount paidAmount;

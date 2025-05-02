@@ -46,10 +46,12 @@ public class Controller {
         //sale.endSale(); Should maybe split endSaleAndPay() to endSale() and pay(), not sure what endSale would do.
         CashPayment payment = new CashPayment(amountPaid);
         sale.payForSale(payment);
+        //SaleDTO saleDTO = sale.createDTO();
+
         Receipt receipt = sale.getReceipt();
         printer.printReceipt(receipt);
         register.presentChangeToGiveToCustomer(sale);
-        register.addPaymentToRegister(sale.totalCost_Amount());
+        register.addPaymentToRegister(sale.totalCostAmount());
     }
 
 }

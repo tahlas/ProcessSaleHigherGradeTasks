@@ -1,6 +1,6 @@
 package model;
 
-/**
+/** =========================BORDE LÄGGA TILL EQUAL???????????============================
  * This represents an amount of money.
  */
 public final class Amount {
@@ -30,6 +30,15 @@ public final class Amount {
      */
     public Amount multiply(Amount other){
         return new Amount(this.amount * other.amount);
+    }
+
+    /**
+     * Divides an amount by another amount.
+     * @param other The amount to divide by.
+     * @return The quotient of the division.
+     */
+    public Amount divide(Amount other){
+        return new Amount(this.amount / other.amount);
     }
 
     /**
