@@ -56,12 +56,9 @@ class RegisterTest {
     }
 
     @Test
-    void presentChangeToGiveToCustomer() {
-
-    }
-
-    @Test
     void addPaymentToRegister() {
-
+        Amount amountToIncreaseWith = new Amount(100);
+        register.addPaymentToRegister(amountToIncreaseWith);
+        assertEquals("1100.0", register.getCashInRegister().toString());
     }
 }
