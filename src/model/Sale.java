@@ -75,8 +75,8 @@ public class Sale {
      * @param specificItem The specific item to calculate the total price for.
      * @return The total price for a specific item.
      */
-    public Amount getTotalItemPrice(ItemDTO specificItem){
-        Amount quantity = new Amount(getQuantity(specificItem));
+    public Amount calculateTotalItemPrice(ItemDTO specificItem){
+        Amount quantity = new Amount(calculateQuantity(specificItem));
         Amount specificItemPrice = specificItem.getPrice();
         return specificItemPrice.multiply(quantity);
 
@@ -87,7 +87,7 @@ public class Sale {
      * @param specificItem The specific item to calculate the quantity for.
      * @return The number of times a specific item has appeared in the sale.
      */
-    public int getQuantity(ItemDTO specificItem){
+    public int calculateQuantity(ItemDTO specificItem){
         int numberOfSpecificItemID = 0;
         String specificItemID = specificItem.getID();
         String itemInListID;
@@ -177,15 +177,4 @@ public class Sale {
     private void setDateOfSale(){
         saleDate = LocalDate.now();
     }
-
-//    public SaleDTO createDTO(){
-//        return new SaleDTO(
-//                soldItems,
-//                payment,
-//                totalCost_Amount(),
-//                totalVAT(),
-//                saleDate,
-//                saleTime
-//        );
-//    }
 }

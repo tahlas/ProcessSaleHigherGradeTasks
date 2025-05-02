@@ -76,11 +76,11 @@ public class Receipt {
                 builder.append(item.getName());
                 builder.append(" ");
 
-                builder.append(sale.getQuantity(item));
+                builder.append(sale.calculateQuantity(item));
                 builder.append(" x ");
                 builder.append(item.getPrice());
                 builder.append("\t");
-                builder.append(sale.getTotalItemPrice(item));
+                builder.append(sale.calculateTotalItemPrice(item));
                 appendLine(builder," SEK");
 
                 alreadyProcessedItem.add(item);

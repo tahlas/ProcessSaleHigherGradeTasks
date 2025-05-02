@@ -15,14 +15,6 @@ public class CashPayment {
         this.paidAmount = paidAmount;
     }
 
-//    /**
-//     * Calculates the total cost of the sale.
-//     * @param sale The sale to calculate the cost for.
-//     */
-//    public void calculateTotalCost(Sale sale) {
-//        totalCostForSale = sale.totalCost_Amount();
-//    }
-
     /**
      *
      * @param total The total cost of the sale.

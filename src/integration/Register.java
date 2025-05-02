@@ -76,4 +76,8 @@ public class Register {
         builder.append(" SEK");
     }
 
+    public Amount getCashInRegister() {
+        return cashInRegister;
+    }
+
 }
