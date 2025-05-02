@@ -27,7 +27,8 @@ public class Sale {
      * @param payment The payment for the sale.
      */
     public void payForSale(CashPayment payment){
-        payment.calculateTotalCost(this);
+        Amount total = totalCost_Amount();
+        payment.setTotalCostForSale(total);
         this.payment = payment;
     }
 
@@ -103,9 +104,11 @@ public class Sale {
         Amount sumOfTotalVat = new Amount(0);
         for(ItemDTO item : soldItems){
             Amount itemPrice = item.getPrice();
-            Amount VATInDecimal = new Amount(item.getVATInDecimal());
+            Amount VATInDecimal = new Amount(item.getVATRateInDecimal());
             Amount itemVATCost = itemPrice.multiply(VATInDecimal);
             sumOfTotalVat = sumOfTotalVat.add(itemVATCost);
+
+
         }
         return sumOfTotalVat;
     }
