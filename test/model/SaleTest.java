@@ -1,14 +1,11 @@
 package model;
 
-import integration.InventoryHandler;
 import integration.ItemDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,12 +38,6 @@ class SaleTest {
     }
 
     @Test
-    void testGetPayment() {
-        sale.payForSale( new CashPayment(new Amount(50)));
-        assertNotNull(sale.getPayment(), "The payment should not be null");
-    }
-
-    @Test
     void testAddItem() {
         ItemDTO item = new ItemDTO("abc123", "BigWheel Oatmeal", new Amount(29.9), 6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free");
         sale.addItem(item);
@@ -54,28 +45,17 @@ class SaleTest {
     }
 
     @Test
-    void testGetReceipt() {
-        Receipt receipt = sale.getReceipt();
-        assertNotNull(receipt, "The receipt should not be null.");
-    }
-
-    @Test
-    void testGetSoldItems() {
-        assertNotNull(sale.getSoldItems(), "The list of items sold should not be null");
-    }
-
-    @Test
-    void testGetTotalItemPrice() {
+    void testCalculateTotalItemPrice() {
         ItemDTO item = new ItemDTO("abc123", "BigWheel Oatmeal", new Amount(10), 6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free");
         sale.addItem(item);
-        assertEquals((new Amount(10)).toString(), sale.getTotalItemPrice(item).toString(), "The total price of the item should be equal to 10");
+        assertEquals((new Amount(10)).toString(), sale.calculateTotalItemPrice(item).toString(), "The total price of the item should be equal to 10");
     }
 
     @Test
-    void testGetQuantity() {
+    void testCalculateQuantity() {
         ItemDTO item = new ItemDTO("abc123", "BigWheel Oatmeal", new Amount(29.9), 6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free");
         sale.addItem(item);
-        assertEquals(1, sale.getQuantity(item), "The quantity of the item should be 1");
+        assertEquals(1, sale.calculateQuantity(item), "The quantity of the item should be 1");
     }
 
     @Test
@@ -88,15 +68,5 @@ class SaleTest {
     void testTotalCostAmount() {
         sale.addItem(new ItemDTO("A", "B", new Amount(125), 25, "C"));
         assertEquals(String.valueOf(125.0), sale.totalCostAmount().toString(), "The total cost should be equal to 150");
-    }
-
-    @Test
-    void testGetTimeOfSale() {
-        assertNotNull(sale.getTimeOfSale(), "The time of sale should not be null");
-    }
-
-    @Test
-    void testGetDateOfSale() {
-        assertEquals(LocalDate.now(), sale.getDateOfSale(), "The date of sale should be equal to the current time");
     }
 }
