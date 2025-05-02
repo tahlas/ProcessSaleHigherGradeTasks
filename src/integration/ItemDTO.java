@@ -80,6 +80,10 @@ public class ItemDTO {
      * @return The VAT rate percentage.
      */
     public double getVATRatePercentage() {
-        return VATRatePercentage;
+        return this.VATRatePercentage;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }
