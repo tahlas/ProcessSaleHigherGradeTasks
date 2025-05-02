@@ -8,15 +8,15 @@ import model.Amount;
 public class ItemDTO {
     private final String ID;
     private final String name;
-    private final double VAT; //procent
+    private final double VATRatePercentage; //procent
     private final String description;
     private final Amount price;
 
-    public ItemDTO(String ID, String name, Amount price, double VAT, String description) {
+    public ItemDTO(String ID, String name, Amount price, double VATRatePercentage, String description) {
         this.ID = ID;
         this.name = name;
         this.price = price;
-        this.VAT = VAT;
+        this.VATRatePercentage = VATRatePercentage;
         this.description = description;
     }
 
@@ -34,7 +34,7 @@ public class ItemDTO {
         builder.append("Item cost: ");
         appendLine(builder, price.toString());
         builder.append("VAT: ");
-        builder.append(VAT);
+        builder.append(VATRatePercentage);
         appendLine(builder, "%");
         builder.append("Item description: ");
         appendLine(builder, description);
@@ -79,7 +79,7 @@ public class ItemDTO {
      * Calculates the VAT
      * @return The VAT in decimal form.
      */
-    public double getVATInDecimal(){
-        return VAT/100;
+    public double getVATRateInDecimal(){
+        return VATRatePercentage/100;
     }
 }
