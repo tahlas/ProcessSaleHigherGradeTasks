@@ -1,10 +1,8 @@
 package startup;
 
-import controller.Controller;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import view.View;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
