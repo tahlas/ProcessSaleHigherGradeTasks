@@ -30,6 +30,7 @@ class ReceiptTest {
         System.setOut(originalSysOut);
     }
 
+    //testing methods that print is not needed...(I did not know that when writing this...)
     @Test
     void testCreateReceiptString() {
         Sale sale = new Sale();
@@ -49,6 +50,5 @@ class ReceiptTest {
                 "Change: 0.0 SEK";
         String result = outContent.toString();
         assertTrue(result.contains(expectedResult), "Wrong printout.");
-
     }
 }
