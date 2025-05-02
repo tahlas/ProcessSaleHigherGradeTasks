@@ -27,7 +27,7 @@ class SaleTest {
 
     @Test
     void testSaleInitialize(){
-        assertTrue(sale.getSoldItems().isEmpty(), "The list of items sold should be empty");
+        assertTrue(sale.getSoldItems().isEmpty(), "The list of items sold should be empty.");
         assertNull(sale.getPayment(), "The payment should be null");
     }
 
