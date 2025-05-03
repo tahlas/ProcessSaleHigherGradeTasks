@@ -20,7 +20,7 @@ class RegisterTest {
     @BeforeEach
     void setUp() {
         sale = new Sale();
-        register = new Register();
+        register = new Register(new Amount(1000));
     }
 
     @BeforeEach
