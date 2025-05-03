@@ -8,14 +8,22 @@ import model.Amount;
 public class ItemDTO {
     private final String ID;
     private final String name;
+    private final Amount priceIncludingVAT;
     private final double VATRatePercentage;
     private final String description;
-    private final Amount price;
 
-    public ItemDTO(String ID, String name, Amount price, double VATRatePercentage, String description) {
+    /**
+     * Creates a new instance.
+     * @param ID The ID of the item.
+     * @param name The name of the item.
+     * @param priceIncludingVAT The price of the item including VAT.
+     * @param VATRatePercentage The VAT rate percentage for the item.
+     * @param description The description of the item.
+     */
+    public ItemDTO(String ID, String name, Amount priceIncludingVAT, double VATRatePercentage, String description) {
         this.ID = ID;
         this.name = name;
-        this.price = price;
+        this.priceIncludingVAT = priceIncludingVAT;
         this.VATRatePercentage = VATRatePercentage;
         this.description = description;
     }
@@ -32,7 +40,7 @@ public class ItemDTO {
         builder.append("Item name: ");
         appendLine(builder, name);
         builder.append("Item cost: ");
-        appendLine(builder, price.toString());
+        appendLine(builder, priceIncludingVAT.toString());
         builder.append("VAT: ");
         builder.append(VATRatePercentage);
         appendLine(builder, "%");
@@ -64,7 +72,7 @@ public class ItemDTO {
      * @return The item's price.
      */
     public Amount getPrice() {
-        return this.price;
+        return this.priceIncludingVAT;
     }
 
     /**
@@ -83,6 +91,10 @@ public class ItemDTO {
         return this.VATRatePercentage;
     }
 
+    /**
+     * Gets the description of the item.
+     * @return The description of the item.
+     */
     public String getDescription() {
         return this.description;
     }
