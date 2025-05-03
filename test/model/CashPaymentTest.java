@@ -35,8 +35,9 @@ class CashPaymentTest {
 
     @Test
     void testGetChange() {
-        Amount change = new Amount(50);
         cashPayment.setTotalCostForSale(totalCost);
-        assertEquals(String.valueOf(change), String.valueOf(cashPayment.getChange()), "The change should be equal");
+        Amount expectedResult = new Amount(50);
+        Amount result = cashPayment.getChange();
+        assertEquals(expectedResult, result, "The change should be equal");
     }
 }
