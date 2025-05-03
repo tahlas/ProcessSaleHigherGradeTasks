@@ -15,6 +15,12 @@ public class Controller {
     private final HandlerCreator handlerCreator;
     private Sale sale;
 
+    /**
+     * Creates a new instance.
+     * @param printer The printer that is used to print the receipt.
+     * @param register The register that is used by the cashier.
+     * @param handlerCreator The handler creator that is used to create other handlers.
+     */
     public Controller(Printer printer, Register register, HandlerCreator handlerCreator) {
         this.printer = printer;
         this.register = register;
@@ -43,15 +49,11 @@ public class Controller {
      * @param amountPaid The total price of the sale.
      */
     public void endSaleAndPay(Amount amountPaid){
-        //sale.endSale(); Should maybe split endSaleAndPay() to endSale() and pay(), not sure what endSale would do.
         CashPayment payment = new CashPayment(amountPaid);
         sale.payForSale(payment);
-        //SaleDTO saleDTO = sale.createDTO();
-
         Receipt receipt = sale.getReceipt();
         printer.printReceipt(receipt);
         register.presentChangeToGiveToCustomer(sale);
         register.addPaymentToRegister(sale.totalCostAmount());
     }
-
 }

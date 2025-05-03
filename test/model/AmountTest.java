@@ -25,24 +25,28 @@ class AmountTest {
     @Test
     void testAdd() {
         Amount result = amountWithThree.add(amountWithFive);
-        assertEquals(String.valueOf(8.0), result.toString(), "The sum should be equal.");
+        Amount expectedResult = new Amount(8);
+        assertEquals(expectedResult, result, "The sum should be equal.");
     }
 
     @Test
     void testMultiply() {
         Amount result = amountWithThree.multiply(amountWithFive);
-        assertEquals(String.valueOf(15.0), result.toString(), "The product should be equal.");
+        Amount expectedResult = new Amount(15);
+        assertEquals(expectedResult, result, "The product should be equal.");
     }
 
     @Test
     void testMinus() {
         Amount result = amountWithFive.minus(amountWithThree);
-        assertEquals(String.valueOf(2.0), result.toString(), "The difference should be equal.");
+        Amount expectedResult = new Amount(2.0);
+        assertEquals(expectedResult, result, "The difference should be equal.");
     }
 
     @Test
     void testToString() {
         Amount amountWithThreeDecimals = new Amount(3.141);
-        assertEquals("3.14", amountWithThreeDecimals.toString(), "The amount should be equal.");
+        String expectedResult = "3.14";
+        assertEquals(expectedResult, amountWithThreeDecimals.toString(), "The amount should be equal.");
     }
 }

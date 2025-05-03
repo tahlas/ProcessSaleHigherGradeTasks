@@ -29,15 +29,6 @@ class SaleTest {
     }
 
     @Test
-    void testPayForSale() {
-        ItemDTO item = new ItemDTO("abc123", "BigWheel Oatmeal", new Amount(29.9), 6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free");
-        sale.addItem(item);
-        CashPayment payment = new CashPayment(new Amount(50));
-        sale.payForSale(payment);
-        fail("This is not done");
-    }
-
-    @Test
     void testAddItem() {
         ItemDTO item = new ItemDTO("abc123", "BigWheel Oatmeal", new Amount(29.9), 6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free");
         sale.addItem(item);

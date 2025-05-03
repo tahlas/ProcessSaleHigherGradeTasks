@@ -69,4 +69,18 @@ public final class Amount {
         double scale = Math.pow(10, 2);
         return Math.round(value * scale) / scale;
     }
+
+    /**
+     * Checks if the amount is equal to another object.
+     * @param other The other object to compare to.
+     * @return True if the amounts are equal, false if they are not.
+     */
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Amount)){
+            return false;
+        }
+        Amount otherAmount = (Amount) other;
+        return amount == otherAmount.amount;
+    }
 }

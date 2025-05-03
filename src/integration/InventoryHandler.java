@@ -10,6 +10,9 @@ import java.util.ArrayList;
 public class InventoryHandler {
     private final ArrayList<ItemDTO> inventory = new ArrayList<>();
 
+    /**
+     * Creates a new instance and adds the items to the inventory.
+     */
     InventoryHandler(){
         addItems();
     }
@@ -36,7 +39,7 @@ public class InventoryHandler {
      * @return An invalid item.
      */
     private ItemDTO invalidItem(){
-        return new ItemDTO("0", "0",new Amount(0), 0, "0");
+        return new ItemDTO("INVALID ITEM ID", "INVALID ITEM NAME",new Amount(0), 0, "INVALID ITEM DESCRIPTION");
     }
 
     /**

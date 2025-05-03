@@ -29,6 +29,5 @@ public class View {
         contr.scanItem("def456");
         Amount amountPaid = new Amount(500);
         contr.endSaleAndPay(amountPaid);
-
     }
 }

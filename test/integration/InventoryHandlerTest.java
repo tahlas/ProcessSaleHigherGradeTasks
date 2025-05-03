@@ -20,11 +20,18 @@ class InventoryHandlerTest {
     }
 
     @Test
-    void getItemDTO() {
+    void testGetItemDTO() {
         String itemIDToFind = "abc123";
         ItemDTO itemToFind = inventory.getItemDTO(itemIDToFind);
         String expectedOutput = "BigWheel Oatmeal";
         String actualOutput = itemToFind.getName();
         assertEquals(expectedOutput, actualOutput, "The item name should be equal");
+    }
+
+    @Test
+    void testGetItemDTONotFound(){
+        String itemIDToFind = "???";
+        ItemDTO itemToFind = inventory.getItemDTO(itemIDToFind);
+        assertEquals("INVALID ITEM NAME", itemToFind.getName(), "The item name should be equal to INVALID ITEM NAME");
     }
 }

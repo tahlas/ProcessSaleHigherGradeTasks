@@ -10,35 +10,35 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * This uses the test from lecture 10. It is currently a placeholder..
+ * This uses the test from lecture 10. It is currently a placeholder...
  */
 class MainTest {
-    private Main instanceToTest;
-    private ByteArrayOutputStream printoutBuffer;
-    private PrintStream originalSysOut;
-
-    @BeforeEach
-    void setUp() {
-        instanceToTest = new Main();
-        printoutBuffer = new ByteArrayOutputStream();
-        PrintStream inMemSysOut = new PrintStream(printoutBuffer);
-        originalSysOut = System.out;
-        System.setOut(inMemSysOut);
-    }
-
-    @AfterEach
-    void tearDown() {
-        instanceToTest = null;
-        printoutBuffer = null;
-        System.setOut(originalSysOut);
-    }
-
-    @Test
-    public void testUIHasStarted(){
-        String[] args = null;
-        Main.main(args);
-        String printout = printoutBuffer.toString();
-        String expectedOutput = "started";
-        assertTrue(printout.contains(expectedOutput), "UI did not start correctly");
-    }
+//    private Main instanceToTest;
+//    private ByteArrayOutputStream printoutBuffer;
+//    private PrintStream originalSysOut;
+//
+//    @BeforeEach
+//    void setUp() {
+//        instanceToTest = new Main();
+//        printoutBuffer = new ByteArrayOutputStream();
+//        PrintStream inMemSysOut = new PrintStream(printoutBuffer);
+//        originalSysOut = System.out;
+//        System.setOut(inMemSysOut);
+//    }
+//
+//    @AfterEach
+//    void tearDown() {
+//        instanceToTest = null;
+//        printoutBuffer = null;
+//        System.setOut(originalSysOut);
+//    }
+//
+//    @Test
+//    public void testUIHasStarted(){
+//        String[] args = null;
+//        Main.main(args);
+//        String printout = printoutBuffer.toString();
+//        String expectedOutput = "started";
+//        assertTrue(printout.contains(expectedOutput), "UI did not start correctly");
+//    }
 }

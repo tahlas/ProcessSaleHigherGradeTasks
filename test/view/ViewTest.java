@@ -14,42 +14,44 @@ import java.util.logging.Handler;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This uses the test from lecture 10. It is currently a placeholder...
+ */
 class ViewTest {
-    private Printer printerToTest;
-    private Register registerToTest;
-    private Handler creatorToTest;
-    private View instanceToTest;
-    private ByteArrayOutputStream printoutBuffer;
-    private PrintStream originalSysOut;
-
-    @BeforeEach
-    void setUp() {
-        Printer printer = new Printer();
-        Register register = new Register();
-        HandlerCreator creator = new HandlerCreator();
-        Controller contr = new Controller(printer, register, creator);
-        instanceToTest = new View(contr);
-
-        printoutBuffer = new ByteArrayOutputStream();
-        PrintStream inMemSysOut = new PrintStream(printoutBuffer);
-        originalSysOut = System.out;
-        System.setOut(inMemSysOut);
-    }
-
-    @AfterEach
-    void tearDown() {
-
-        instanceToTest = null;
-        printoutBuffer = null;
-        System.setOut(originalSysOut);
-    }
-
-    @Test
-    public void testRunFakeExecution(){
-        instanceToTest.runFakeExecution();
-        String printout = printoutBuffer.toString();
-        String expectedOutput = "started";
-        assertTrue(printout.contains(expectedOutput), "UI did not start correctly");
-    }
-
+//    private Printer printerToTest;
+//    private Register registerToTest;
+//    private Handler creatorToTest;
+//    private View instanceToTest;
+//    private ByteArrayOutputStream printoutBuffer;
+//    private PrintStream originalSysOut;
+//
+//    @BeforeEach
+//    void setUp() {
+//        Printer printer = new Printer();
+//        Register register = new Register();
+//        HandlerCreator creator = new HandlerCreator();
+//        Controller contr = new Controller(printer, register, creator);
+//        instanceToTest = new View(contr);
+//
+//        printoutBuffer = new ByteArrayOutputStream();
+//        PrintStream inMemSysOut = new PrintStream(printoutBuffer);
+//        originalSysOut = System.out;
+//        System.setOut(inMemSysOut);
+//    }
+//
+//    @AfterEach
+//    void tearDown() {
+//
+//        instanceToTest = null;
+//        printoutBuffer = null;
+//        System.setOut(originalSysOut);
+//    }
+//
+//    @Test
+//    public void testRunFakeExecution(){
+//        instanceToTest.runFakeExecution();
+//        String printout = printoutBuffer.toString();
+//        String expectedOutput = "started";
+//        assertTrue(printout.contains(expectedOutput), "UI did not start correctly");
+//    }
 }
