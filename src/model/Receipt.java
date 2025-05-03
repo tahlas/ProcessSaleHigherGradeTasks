@@ -16,7 +16,7 @@ public class Receipt {
      * Creates a new instance.
      * @param sale The actual sale.
      */
-    public Receipt(Sale sale){
+    Receipt(Sale sale){
         this.itemsOnReceipt = sale.getSoldItems();
         this.sale = sale;
     }

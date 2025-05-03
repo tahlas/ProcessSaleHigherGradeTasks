@@ -9,7 +9,7 @@ public class ItemDTO {
     private final String ID;
     private final String name;
     private final Amount priceIncludingVAT;
-    private final double VATRatePercentage;
+    private final double VATRatePercentage; //ändra till Amount?
     private final String description;
 
     /**
