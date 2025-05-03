@@ -13,8 +13,9 @@ public class Register {
     /**
      * Creates a new instance and sets the amount of cash in the register.
      */
-    public Register(){
-        this.cashInRegister = new Amount(1000);
+    public Register(Amount cashInRegister){
+        //this.cashInRegister = new Amount(1000);
+        this.cashInRegister = cashInRegister;
     }
 
     /**
