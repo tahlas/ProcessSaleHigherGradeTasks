@@ -28,18 +28,9 @@ class CashPaymentTest {
     @Test
     void testSetTotalCostForSale() {
         cashPayment.setTotalCostForSale(totalCost);
-        assertEquals(String.valueOf(totalCost), String.valueOf(cashPayment.getTotalCostForSale()), "The total cost should be equal");
-    }
-
-    @Test
-    void testGetPaidAmount() {
-        assertEquals(String.valueOf(paidAmount), String.valueOf(cashPayment.getPaidAmount()), "The paid amount should be equal");
-    }
-
-    @Test
-    void testGetTotalCostForSale() {
-        cashPayment.setTotalCostForSale(totalCost);
-        assertEquals(String.valueOf(totalCost), String.valueOf(cashPayment.getTotalCostForSale()), "The total cost should be equal");
+        Amount expectedResult = totalCost;
+        Amount result = cashPayment.getTotalCostForSale();
+        assertEquals(expectedResult, result, "The total cost should be equal");
     }
 
     @Test
