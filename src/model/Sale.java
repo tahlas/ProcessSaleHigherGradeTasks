@@ -145,10 +145,18 @@ public class Sale {
         saleTime = LocalTime.now();
     }
 
+    /**
+     * Gets the time of the sale.
+     * @return The time of the sale.
+     */
     public LocalTime getTimeOfSale(){
         return saleTime;
     }
 
+    /**
+     * Gets the date of the sale.
+     * @return The date of the sale.
+     */
     public LocalDate getDateOfSale(){
         return saleDate;
     }
