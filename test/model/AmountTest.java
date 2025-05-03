@@ -37,6 +37,15 @@ class AmountTest {
     }
 
     @Test
+    void testDivide() {
+        Amount amountWithTen = new Amount(10);
+        Amount amountWithTwo = new Amount(2);
+        Amount expectedResult = new Amount(5);
+        Amount result = amountWithTen.divide(amountWithTwo);
+        assertEquals(expectedResult, result, "The quotient should be equal.");
+    }
+
+    @Test
     void testMinus() {
         Amount result = amountWithFive.minus(amountWithThree);
         Amount expectedResult = new Amount(2.0);
