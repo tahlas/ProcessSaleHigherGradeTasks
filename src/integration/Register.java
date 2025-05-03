@@ -43,6 +43,11 @@ public class Register {
         System.out.println("Cash in register: " + cashInRegister);
     }
 
+    /**
+     * Creates a string with information about the scanned item and running totals for the sale.
+     * @param sale The sale where the scanned item exists in.
+     * @return The string with information about the scanned item and running totals for the sale.
+     */
     private String currentScannedItemString(Sale sale){
         StringBuilder builder = new StringBuilder();
         ItemDTO lastScannedItem = sale.getSoldItems().getLast();
@@ -68,14 +73,26 @@ public class Register {
         return builder.toString();
     }
 
+    /**
+     * Appends a new line to the StringBuilder.
+     * @param builder The StringBuilder to append the new line to.
+     */
     private void endSection(StringBuilder builder){
         builder.append("\n");
     }
 
+    /**
+     * Appends the currency to the StringBuilder.
+     * @param builder The StringBuilder to append the currency to.
+     */
     private void appendCurrency(StringBuilder builder){
         builder.append(" SEK");
     }
 
+    /**
+     * Gets the amount of cash in the register.
+     * @return The amount of cash in the register.
+     */
     public Amount getCashInRegister() {
         return cashInRegister;
     }
