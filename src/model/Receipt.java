@@ -47,13 +47,22 @@ public class Receipt {
 
         builder.append("Cash: ");
         builder.append(payment.getPaidAmount());
-        appendLine(builder, " SEK");
+        appendCurrencyLine(builder);
+
         builder.append("Change: ");
         builder.append(payment.getChange());
-        appendLine(builder, " SEK");
+        appendCurrencyLine(builder);
         appendLine(builder, "------------------ End receipt ---------------------");
 
         return builder.toString();
+    }
+
+    /**
+     * Appends the currency to the StringBuilder and creates a new line.
+     * @param builder The builder to append to.
+     */
+    private void appendCurrencyLine(StringBuilder builder){
+        appendLine(builder, " SEK");
     }
 
     /**
@@ -81,7 +90,8 @@ public class Receipt {
                 builder.append(item.getPrice());
                 builder.append("\t");
                 builder.append(sale.calculateTotalItemPrice(item));
-                appendLine(builder," SEK");
+                appendCurrencyLine(builder);
+                //appendLine(builder," SEK");
 
                 alreadyProcessedItem.add(item);
             }
