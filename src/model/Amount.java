@@ -1,6 +1,6 @@
 package model;
 
-/** =========================BORDE LÄGGA TILL EQUAL???????????============================
+/**
  * This represents an amount of money.
  */
 public final class Amount {
