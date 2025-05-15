@@ -43,7 +43,7 @@ public class Receipt {
         endSection(builder);
 
         builder.append("VAT: ");
-        appendLine(builder, String.valueOf(sale.totalVAT()));
+        appendLine(builder, String.valueOf(sale.getTotalVAT()));
 
         builder.append("Cash: ");
         builder.append(payment.getPaidAmount());
@@ -79,13 +79,15 @@ public class Receipt {
      * @param builder The builder to append the information to.
      */
     private void appendItemsOnReceipt(StringBuilder builder) {
-        ArrayList<ItemDTO> alreadyProcessedItem = new ArrayList<>();
+        //ArrayList<ItemDTO> alreadyProcessedItem = new ArrayList<>();
+
         for(ItemDTO item : itemsOnReceipt) {
-            if(!alreadyProcessedItem.contains(item)){
+            //if(!alreadyProcessedItem.contains(item)){
                 builder.append(item.getName());
                 builder.append(" ");
 
-                builder.append(sale.calculateQuantity(item));
+                //builder.append(sale.calculateQuantity(item));
+                builder.append(item.getQuantity());
                 builder.append(" x ");
                 builder.append(item.getPrice());
                 builder.append("\t");
@@ -93,8 +95,8 @@ public class Receipt {
                 appendCurrencyLine(builder);
                 //appendLine(builder," SEK");
 
-                alreadyProcessedItem.add(item);
-            }
+                //alreadyProcessedItem.add(item);
+            //}
         }
     }
 
