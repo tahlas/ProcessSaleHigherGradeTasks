@@ -48,7 +48,21 @@ public class Sale {
      * @param itemDTO The item to add to the sale.
      */
     public void addItem(ItemDTO itemDTO){
-        soldItems.add(itemDTO);
+        String itemID = itemDTO.getID();
+        if(!itemAlreadyInSale(itemID)){
+            soldItems.add(itemDTO);
+        }
+    }
+
+
+    private boolean itemAlreadyInSale(String itemIDToCheck){
+        for(ItemDTO item : soldItems){
+            if(item.getID().equals(itemIDToCheck)){
+                item.increaseQuantity();
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -76,39 +90,25 @@ public class Sale {
      * @return The total price for a specific item.
      */
     public Amount calculateTotalItemPrice(ItemDTO specificItem){
-        Amount quantity = new Amount(calculateQuantity(specificItem));
+        //Amount quantity = new Amount(calculateQuantity(specificItem));
+        Amount quantity = new Amount(specificItem.getQuantity());
         Amount specificItemPrice = specificItem.getPrice();
         return specificItemPrice.multiply(quantity);
 
     }
 
     /**
-     * Calculates the quantity for a specific item.
-     * @param specificItem The specific item to calculate the quantity for.
-     * @return The number of times a specific item has appeared in the sale.
-     */
-    public int calculateQuantity(ItemDTO specificItem){
-        int numberOfSpecificItemID = 0;
-        String specificItemID = specificItem.getID();
-        String itemInListID;
-        for(ItemDTO item : soldItems){
-            itemInListID = item.getID();
-            if(itemIDIsEqual(specificItemID, itemInListID))
-                numberOfSpecificItemID++;
-        }
-        return numberOfSpecificItemID;
-    }
-
-    /**
      * Calculates the total VAT for the sale.
      * @return The total VAT.
      */
-    public Amount totalVAT(){
+    public Amount getTotalVAT(){
         Amount sumOfTotalVat = new Amount(0);
         for(ItemDTO item : soldItems){
             Amount itemVATRate = new Amount(item.getVATRatePercentage());
             Amount itemVATAmount = calculateVATAmount(item.getPrice(), itemVATRate);
-            sumOfTotalVat = sumOfTotalVat.add(itemVATAmount);
+            Amount itemQuantity = new Amount(item.getQuantity());
+            Amount totalItemVATAmount = itemVATAmount.multiply(itemQuantity);
+            sumOfTotalVat = sumOfTotalVat.add(totalItemVATAmount);
         }
         return sumOfTotalVat;
     }
@@ -133,7 +133,9 @@ public class Sale {
     public Amount totalCostAmount(){
         Amount sumOfTotalCost = new Amount(0);
         for(ItemDTO item : soldItems){
-            sumOfTotalCost = sumOfTotalCost.add(item.getPrice());
+            //Amount itemQuantity = new Amount(item.getQuantity());
+            Amount totalItemPrice = calculateTotalItemPrice(item);
+            sumOfTotalCost = sumOfTotalCost.add(totalItemPrice);
         }
         return sumOfTotalCost;
     }
@@ -159,16 +161,6 @@ public class Sale {
      */
     public LocalDate getDateOfSale(){
         return saleDate;
-    }
-
-    /**
-     * Checks if two item IDs are equal.
-     * @param firstItemID The first item ID to check.
-     * @param secondItemID The second item ID to check.
-     * @return True if they are equal, false if they are not equal.
-     */
-    private boolean itemIDIsEqual(String firstItemID, String secondItemID){
-        return firstItemID.equals(secondItemID);
     }
 
     /**
