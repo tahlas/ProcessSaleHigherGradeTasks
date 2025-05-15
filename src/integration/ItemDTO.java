@@ -11,6 +11,7 @@ public class ItemDTO {
     private final Amount priceIncludingVAT;
     private final double VATRatePercentage; //ändra till Amount?
     private final String description;
+    private int quantity;
 
     /**
      * Creates a new instance.
@@ -26,6 +27,11 @@ public class ItemDTO {
         this.priceIncludingVAT = priceIncludingVAT;
         this.VATRatePercentage = VATRatePercentage;
         this.description = description;
+        this.quantity = 1;
+    }
+
+    public void increaseQuantity(){
+        quantity++;
     }
 
     /**
@@ -57,6 +63,10 @@ public class ItemDTO {
     private void appendLine(StringBuilder builder, String line){
         builder.append(line);
         builder.append("\n");
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     /**
