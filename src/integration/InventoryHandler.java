@@ -2,6 +2,7 @@ package integration;
 
 import model.Amount;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -22,16 +23,23 @@ public class InventoryHandler {
      * @param itemID The ID of the item to search for in the inventory.
      * @return If there exists an item with the parsed ID then that item will be returned.
      * If there does not exist an item with that ID then it returns {@code null}.
+     * @throws ItemNotFoundException If there does not exist an item with the parsed ID.
      */
-    public ItemDTO getItemDTO(String itemID){
+    public ItemDTO getItemDTO(String itemID) throws ItemNotFoundException, SQLException {
         String inventoryItemID;
         for(ItemDTO item : inventory){
             inventoryItemID = item.getID();
             if(itemID.equals(inventoryItemID)){
                 return item;
             }
+            if(itemID.equals("databaseFailureID")){
+                throw new SQLException();
+                //throw new DatabaseFailureException("databaseFailureID");
+            }
         }
-        return invalidItem();
+        throw new ItemNotFoundException(itemID);
+
+        //return invalidItem();
     }
 
     /**
