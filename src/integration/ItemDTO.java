@@ -3,7 +3,7 @@ package integration;
 import model.Amount;
 
 /**
- * This is a data transfer object that stores information about an item.
+ * This is a data transfer object that stores information about an item..
  */
 public class ItemDTO {
     private final String ID;
