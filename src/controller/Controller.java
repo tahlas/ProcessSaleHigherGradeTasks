@@ -41,7 +41,7 @@ public class Controller {
         InventoryHandler inventoryHandler = handlerCreator.getInventoryHandler();
         ItemDTO scannedItem = inventoryHandler.getItemDTO(itemID);
         sale.addItem(scannedItem);
-        register.presentCurrentScannedItem(sale);
+        register.presentCurrentScannedItem(sale, scannedItem);
     }
 
     /**
