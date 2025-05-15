@@ -41,7 +41,7 @@ class RegisterTest {
     void testPresentCurrentScannedItem() {
         ItemDTO item = new ItemDTO("A", "B", new Amount(125), 25, "C" );
         sale.addItem(item);
-        register.presentCurrentScannedItem(sale);
+        register.presentCurrentScannedItem(sale, item);
         String expectedResult =
                 "Add 1 item with item id " + item.getID() + ":\n" +
                 "Item ID: " + item.getID() + "\n" +

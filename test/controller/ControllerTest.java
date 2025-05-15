@@ -1,14 +1,12 @@
 package controller;
 
-import integration.HandlerCreator;
-import integration.InventoryHandler;
-import integration.ItemDTO;
-import integration.Register;
+import integration.*;
 import model.Amount;
 import model.CashPayment;
 import model.Sale;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +31,7 @@ class ControllerTest {
     }
 
     @Test
-    void testGetItemDTO(){
+    void testGetItemDTO() throws ItemNotFoundException {
         String itemIDToFind = "abc123";
         ItemDTO itemToFind = inventory.getItemDTO(itemIDToFind);
         String expectedOutput = "BigWheel Oatmeal";
@@ -41,8 +39,9 @@ class ControllerTest {
         assertEquals(expectedOutput, actualOutput, "The item name should be equal");
     }
 
-    @Test
-    void testGetItemDTONotFound(){
+    //Used when exception did not exist
+    @Disabled
+    void testGetItemDTONotFound() throws ItemNotFoundException {
         String itemIDToFind = "???";
         ItemDTO itemToFind = inventory.getItemDTO(itemIDToFind);
         assertEquals("INVALID ITEM NAME", itemToFind.getName(), "The item name should be equal to INVALID ITEM NAME");
@@ -50,7 +49,7 @@ class ControllerTest {
 
 
     @Test
-    void testAddItem(){
+    void testAddItem() throws ItemNotFoundException {
         String itemIDToFind = "abc123";
         ItemDTO itemToFind = inventory.getItemDTO(itemIDToFind);
         sale.addItem(itemToFind);
