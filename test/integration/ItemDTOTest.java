@@ -60,4 +60,12 @@ class ItemDTOTest {
         double actualOutput = itemDTO.getVATRatePercentage();
         assertEquals(expectedOutput, actualOutput, "The VAT should be equal");
     }
+
+    @Test
+    void testIncreaseQuantity() {
+        itemDTO.increaseQuantity();
+        int expectedResult = 2;
+        int actualResult = itemDTO.getQuantity();
+        assertEquals(expectedResult, actualResult, "The quantity should be equal");
+    }
 }
