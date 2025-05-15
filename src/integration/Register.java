@@ -21,8 +21,8 @@ public class Register {
     /**
      * Shows information about the item that is scanned and the running total (including VAT).
      */
-    public void presentCurrentScannedItem(Sale sale) {
-        String printString = currentScannedItemString(sale);
+    public void presentCurrentScannedItem(Sale sale, ItemDTO scannedItem) {
+        String printString = currentScannedItemString(sale, scannedItem);
         System.out.println(printString);
     }
 
@@ -49,9 +49,9 @@ public class Register {
      * @param sale The sale where the scanned item exists in.
      * @return The string with information about the scanned item and running totals for the sale.
      */
-    private String currentScannedItemString(Sale sale){
+    private String currentScannedItemString(Sale sale, ItemDTO lastScannedItem){
         StringBuilder builder = new StringBuilder();
-        ItemDTO lastScannedItem = sale.getSoldItems().getLast();
+        //ItemDTO lastScannedItem = sale.getSoldItems().getLast(); // will have issues
 
         builder.append("Add 1 item with item id ");
         builder.append(lastScannedItem.getID());
@@ -62,12 +62,12 @@ public class Register {
 
         endSection(builder);
         builder.append("Total cost (incl VAT): ");
-        builder.append(sale.totalCostAmount()); //något fel är här
+        builder.append(sale.totalCostAmount());
         appendCurrency(builder);
         endSection(builder);
 
         builder.append("Total VAT: ");
-        builder.append(sale.totalVAT());
+        builder.append(sale.getTotalVAT());
         appendCurrency(builder);
         endSection(builder);
 
