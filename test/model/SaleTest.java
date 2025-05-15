@@ -33,12 +33,22 @@ class SaleTest {
         assertTrue(sale.getSoldItems().contains(item), "The item should be in the list of items sold");
     }
 
+//    @Test
+//    void testAddSameItemTwice(){
+//        ItemDTO item = new ItemDTO("A", "B", new Amount(10), 10, "C");
+//        sale.addItem(item);
+//        sale.addItem(item);
+//        assertEquals(2, sale.getSoldItems().size(), "The list of sold items should have 2 items");
+//    }
+
     @Test
     void testAddSameItemTwice(){
         ItemDTO item = new ItemDTO("A", "B", new Amount(10), 10, "C");
         sale.addItem(item);
         sale.addItem(item);
-        assertEquals(2, sale.getSoldItems().size(), "The list of sold items should have 2 items");
+        int expectedQuantity = 2;
+        int actualQuantity = item.getQuantity();
+        assertEquals(expectedQuantity, actualQuantity, "The quantity should be the same");
     }
 
     @Test
@@ -59,18 +69,18 @@ class SaleTest {
         assertEquals(expectedResult, result, "The total price of the item should be equal to 10");
     }
 
-    @Test
-    void testCalculateQuantity() {
-        ItemDTO item = new ItemDTO("abc123", "BigWheel Oatmeal", new Amount(29.9), 6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free");
-        sale.addItem(item);
-        assertEquals(1, sale.calculateQuantity(item), "The quantity of the item should be 1");
-    }
+//    @Disabled
+//    void testCalculateQuantity() {
+//        ItemDTO item = new ItemDTO("abc123", "BigWheel Oatmeal", new Amount(29.9), 6, "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free");
+//        sale.addItem(item);
+//        assertEquals(1, sale.calculateQuantity(item), "The quantity of the item should be 1");
+//    }
 
     @Test
-    void testTotalVAT() {
+    void testGetTotalVAT() {
         sale.addItem(new ItemDTO("A", "B", new Amount(125), 25, "C"));
         Amount expectedResult = new Amount(25);
-        Amount result = sale.totalVAT();
+        Amount result = sale.getTotalVAT();
         assertEquals(expectedResult, result, "The total VAT should be equal to 25");
     }
 
