@@ -27,7 +27,7 @@ public class View {
         contr.scanItem("abc123");
         contr.scanItem("abc123");
         contr.scanItem("def456");
-        Amount amountPaid = new Amount(500);
+        Amount amountPaid = new Amount(100);
         contr.endSaleAndPay(amountPaid);
     }
 }
