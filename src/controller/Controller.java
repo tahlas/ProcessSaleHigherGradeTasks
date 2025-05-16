@@ -5,8 +5,6 @@ import model.Amount;
 import model.CashPayment;
 import model.Sale;
 import model.Receipt;
-import util.FileLogger;
-import view.ErrorMessageHandler;
 
 import java.sql.SQLException;
 
@@ -18,8 +16,8 @@ public class Controller {
     private final Register register;
     private final HandlerCreator handlerCreator;
     private Sale sale;
-    private final ErrorMessageHandler errorMsgHandler = new ErrorMessageHandler();
-    private final FileLogger logger = FileLogger.getLogger();
+    //private final ErrorMessageHandler errorMsgHandler = new ErrorMessageHandler();
+    //private final FileLogger logger = FileLogger.getLogger();
 
     /**
      * Creates a new instance.
@@ -43,14 +41,17 @@ public class Controller {
     /**
      * Scans an item.
      */
-    public void scanItem(String itemID) throws ItemNotFoundException{
+    public void scanItem(String itemID){
         InventoryHandler inventoryHandler = handlerCreator.getInventoryHandler();
         ItemDTO scannedItem;
         try{
             scannedItem = inventoryHandler.getItemDTO(itemID);
         } catch(SQLException sqle){
-            logger.log("Could not connect to database. Item with itemID: " + itemID + " could not be scanned.");
-            throw new OperationFailedException("Could not connect to database. Item with itemID: " + itemID + " could not be scanned.", sqle);
+            //logger.log("Could not connect to database. Item with itemID: " + itemID + " could not be scanned.");
+            //logger.log("Could not connect to database. Item with itemID: " + itemID + " could not be scanned.");
+            throw new OperationFailedException("Could not connect to the database. Item with itemID: " + itemID + " could not be scanned.", sqle);
+        } catch(ItemNotFoundException e){
+            throw new OperationFailedException("Item with itemID: " + itemID + " could not be scanned.", e);
         }
 
         sale.addItem(scannedItem);

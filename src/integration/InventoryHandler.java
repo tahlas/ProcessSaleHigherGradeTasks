@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class InventoryHandler {
     private final ArrayList<ItemDTO> inventory = new ArrayList<>();
+    public static final String DATABASE_FAILURE_ID = "databaseFailureID";
 
     /**
      * Creates a new instance and adds the items to the inventory.
@@ -32,22 +33,12 @@ public class InventoryHandler {
             if(itemID.equals(inventoryItemID)){
                 return item;
             }
-            if(itemID.equals("databaseFailureID")){
+            if(itemID.equals(DATABASE_FAILURE_ID)){
                 throw new SQLException();
                 //throw new DatabaseFailureException("databaseFailureID");
             }
         }
         throw new ItemNotFoundException(itemID);
-
-        //return invalidItem();
-    }
-
-    /**
-     * Returns a value that represents an invalid item.
-     * @return An invalid item.
-     */
-    private ItemDTO invalidItem(){
-        return new ItemDTO("INVALID ITEM ID", "INVALID ITEM NAME",new Amount(0), 0, "INVALID ITEM DESCRIPTION");
     }
 
     /**

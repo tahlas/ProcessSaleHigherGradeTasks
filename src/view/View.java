@@ -1,7 +1,7 @@
 package view;
 
 import controller.Controller;
-import integration.ItemNotFoundException;
+import integration.InventoryHandler;
 import model.Amount;
 import util.FileLogger;
 
@@ -33,21 +33,23 @@ public class View {
             contr.scanItem("abc123");
             contr.scanItem("def456");
             contr.scanItem("invalidID");
-        } catch (ItemNotFoundException e){
-            logger.log("Item not found in inventory: " + e.getItemIDThatCanNotBeFound());
-            errorMsgHandler.showErrorMessage(e.getMessage());
+//        } catch (ItemNotFoundException e){
+//            logger.log(e.getMessage());
+//            //logger.log("Item not found in inventory: " + e.getItemIDThatCanNotBeFound());
+//            errorMsgHandler.showErrorMessage(e.getMessage());
         } catch (Exception e){ //according to page 188?
-            logger.log("Error occurred while scanning item: " + e.getMessage());
+            logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage("An unexpected error occurred while scanning the item.");
         }
         try{
             //used to throw a database failure exception (hardcoded)
-            contr.scanItem("databaseFailureID");
-        } catch (ItemNotFoundException e){
-            logger.log("Item not found in inventory: " + e.getItemIDThatCanNotBeFound());
-            errorMsgHandler.showErrorMessage(e.getMessage());
+            contr.scanItem(InventoryHandler.DATABASE_FAILURE_ID);
+//        } catch (ItemNotFoundException e){
+//            logger.log(e.getMessage());
+//            //logger.log("Item not found in inventory: " + e.getItemIDThatCanNotBeFound());
+//            errorMsgHandler.showErrorMessage(e.getMessage());
         } catch (Exception e){//according to page 188?
-            logger.log("Error occurred while scanning item: " + e.getMessage());
+            logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage("An unexpected error occurred while scanning the item.");
         }
         Amount amountPaid = new Amount(100);
