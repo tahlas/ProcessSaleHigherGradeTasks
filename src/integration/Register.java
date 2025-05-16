@@ -32,7 +32,7 @@ public class Register {
      */
     public void presentChangeToGiveToCustomer(Sale sale){
         CashPayment payment = sale.getPayment();
-        System.out.println("Change to give the customer: " + payment.getChange());
+        System.out.println("Change to give the customer: " + payment.getChange() +"\n");
     }
 
     /**
