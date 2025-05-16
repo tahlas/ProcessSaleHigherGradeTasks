@@ -1,7 +1,6 @@
 package model;
 
 import integration.ItemDTO;
-import integration.SaleItem;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,7 +13,7 @@ public class Sale {
     private LocalDate saleDate;
     private LocalTime saleTime;
     private Receipt receipt;
-    private final ArrayList<SaleItem> soldItems;//private final ArrayList<ItemDTO> soldItems;
+    private final ArrayList<ItemDTO> soldItems;
     private CashPayment payment;
 
     /**
@@ -50,30 +49,20 @@ public class Sale {
      */
     public void addItem(ItemDTO itemDTO){
         String itemID = itemDTO.getID();
-        for(SaleItem item : soldItems){
-            if(item.getItemDTO().getID().equals(itemID)){
-                item.increaseQuantity();
-                return;
-            }
+        if(!itemAlreadyInSale(itemID)){
+            soldItems.add(itemDTO);
         }
     }
-//    public void addItem(ItemDTO itemDTO){
-//        String itemID = itemDTO.getID();
-//        if(!itemAlreadyInSale(itemID)){
-//            soldItems.add(itemDTO);
-//        }
-//    }
 
-
-//    private boolean itemAlreadyInSale(String itemIDToCheck){
-//        for(ItemDTO item : soldItems){
-//            if(item.getID().equals(itemIDToCheck)){
-//                item.increaseQuantity();
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    private boolean itemAlreadyInSale(String itemIDToCheck){
+        for(ItemDTO item : soldItems){
+            if(item.getID().equals(itemIDToCheck)){
+                item.increaseQuantity();
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Gets the receipt for the sale.
@@ -90,22 +79,18 @@ public class Sale {
      * Gets the list with sold items for this sale.
      * @return The list with the sold items for this sale.
      */
-    public ArrayList<SaleItem> getSoldItems() {
+    public ArrayList<ItemDTO> getSoldItems() {
         return soldItems;
     }
-//    public ArrayList<ItemDTO> getSoldItems() {
-//        return soldItems;
-//    }
 
     /**
      * Calculates the total price for a specific item.
-     * @param saleItem The specific item to calculate the total price for.
+     * @param specificItem The specific item to calculate the total price for.
      * @return The total price for a specific item.
      */
-    public Amount calculateTotalItemPrice(SaleItem saleItem){
-        //Amount quantity = new Amount(calculateQuantity(specificItem));
-        Amount quantity = new Amount(saleItem.getQuantity());
-        Amount specificItemPrice = saleItem.getItemDTO().getPrice();
+    public Amount calculateTotalItemPrice(ItemDTO specificItem){
+        Amount quantity = new Amount(specificItem.getQuantity());
+        Amount specificItemPrice = specificItem.getPrice();
         return specificItemPrice.multiply(quantity);
 
     }
@@ -116,9 +101,9 @@ public class Sale {
      */
     public Amount getTotalVAT(){
         Amount sumOfTotalVat = new Amount(0);
-        for(SaleItem item : soldItems){
-            Amount itemVATRate = new Amount(item.getItemDTO().getVATRatePercentage());
-            Amount itemVATAmount = calculateVATAmount(item.getItemDTO().getPrice(), itemVATRate);
+        for(ItemDTO item : soldItems){
+            Amount itemVATRate = new Amount(item.getVATRatePercentage());
+            Amount itemVATAmount = calculateVATAmount(item.getPrice(), itemVATRate);
             Amount itemQuantity = new Amount(item.getQuantity());
             Amount totalItemVATAmount = itemVATAmount.multiply(itemQuantity);
             sumOfTotalVat = sumOfTotalVat.add(totalItemVATAmount);
