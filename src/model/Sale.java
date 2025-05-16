@@ -50,7 +50,8 @@ public class Sale {
     public void addItem(ItemDTO itemDTO){
         String itemID = itemDTO.getID();
         if(!itemAlreadyInSale(itemID)){
-            soldItems.add(itemDTO);
+            ItemDTO newItem = new ItemDTO(itemDTO);
+            soldItems.add(newItem);
         }
     }
 

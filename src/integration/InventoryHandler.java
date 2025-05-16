@@ -50,11 +50,11 @@ public class InventoryHandler {
                 new Amount(29.9),
                 6,
                 "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free"));
-        inventory.add(new ItemDTO("abc123",
-                "BigWheel Oatmeal",
-                new Amount(29.9),
-                6,
-                "BigWheel Oatmeal 500 g,whole grain oats, high fiber, gluten free"));
+//        inventory.add(new ItemDTO("abc123",
+//                "BigWheel Oatmeal",
+//                new Amount(29.9),
+//                6,
+//                "BigWheel Oatmeal 500 g,whole grain oats, high fiber, gluten free"));
         inventory.add(new ItemDTO("def456",
                 "YouGoGo Blueberry",
                 new Amount(14.9),

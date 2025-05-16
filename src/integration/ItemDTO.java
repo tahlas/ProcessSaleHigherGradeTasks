@@ -30,6 +30,19 @@ public class ItemDTO {
         this.quantity = 1;
     }
 
+    /**
+     * Creates a copy of an ItemDTO.
+     * @param itemDTOToCopy The ItemDTO to copy.
+     */
+    public ItemDTO(ItemDTO itemDTOToCopy){
+        this.ID = itemDTOToCopy.getID();
+        this.name = itemDTOToCopy.getName();
+        this.priceIncludingVAT = itemDTOToCopy.getPrice();
+        this.VATRatePercentage = itemDTOToCopy.getVATRatePercentage();
+        this.description = itemDTOToCopy.getDescription();
+        this.quantity = itemDTOToCopy.getQuantity();
+    }
+
     public void increaseQuantity(){
         quantity++;
     }

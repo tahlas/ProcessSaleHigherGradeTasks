@@ -29,6 +29,7 @@ public class View {
      */
     public void runFakeExecution(){
         contr.startSale();
+        String unexpectedErrorMsg = "An unexpected error occurred.";
         try{
             contr.scanItem("abc123");
             contr.scanItem("abc123");
@@ -36,19 +37,24 @@ public class View {
             contr.scanItem("invalidID");
         } catch (Exception e){ //according to page 188?
             logger.log(e.getMessage());
-            errorMsgHandler.showErrorMessage("An unexpected error occurred while scanning the item.");
+            errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
         }
         try{
             contr.scanItem(InventoryHandler.DATABASE_FAILURE_ID); //used to throw a database failure exception (hardcoded)
         } catch (Exception e){//according to page 188?
             logger.log(e.getMessage());
-            errorMsgHandler.showErrorMessage("An unexpected error occurred while scanning the item.");
+            errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
         }
         Amount amountPaid = new Amount(100);
         contr.endSaleAndPay(amountPaid);
 
-        contr.startSale();
-        contr.scanItem("abc123");
-        contr.endSaleAndPay(new Amount(50));
+        contr.startSale(); //Second sale
+        try{
+            contr.scanItem("abc123");
+        }catch (Exception e){
+            logger.log(e.getMessage());
+            errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
+        }
+        contr.endSaleAndPay(new Amount(100));
     }
 }
