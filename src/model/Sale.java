@@ -17,6 +17,7 @@ public class Sale {
     private final ArrayList<ItemDTO> soldItems;
     private CashPayment payment;
     private List<TotalRevenueObserver> totalRevenueObservers = new ArrayList<>();
+    private Amount totalCost;
 
     /**
      * Creates a new instance and saves the time of the sale.
@@ -145,16 +146,13 @@ public class Sale {
     public Amount getTotalCostAmount(){
         Amount sumOfTotalCost = new Amount(0);
         for(ItemDTO item : soldItems){
-            //Amount itemQuantity = new Amount(item.getQuantity());
             Amount totalItemPrice = calculateTotalItemPrice(item);
             sumOfTotalCost = sumOfTotalCost.add(totalItemPrice);
         }
+
         return sumOfTotalCost;
     }
 
-    /**
-     * Sets the time of the sale.
-     */
     private void setTimeOfSale(){
         saleTime = LocalTime.now();
     }
@@ -175,17 +173,10 @@ public class Sale {
         return saleDate;
     }
 
-    /**
-     * Checks if the receipt exists.
-     * @return True if the receipt does not exist, false if it does exist.
-     */
     private boolean receiptDoesNotExist(){
         return receipt == null;
     }
 
-    /**
-     * Sets the date of the sale.
-     */
     private void setDateOfSale(){
         saleDate = LocalDate.now();
     }
