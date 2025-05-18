@@ -11,11 +11,20 @@ import java.util.ArrayList;
 public class InventoryHandler {
     private final ArrayList<ItemDTO> inventory = new ArrayList<>();
     public static final String DATABASE_FAILURE_ID = "databaseFailureID";
+    private static final InventoryHandler INSTANCE = new InventoryHandler();
+
+    /**
+     * Gets the only instance of the inventory handler (singleton).
+     * @return
+     */
+    public static InventoryHandler getInventoryHandler(){
+        return INSTANCE;
+    }
 
     /**
      * Creates a new instance and adds the items to the inventory.
      */
-    InventoryHandler(){
+    private InventoryHandler(){
         addItems();
     }
 

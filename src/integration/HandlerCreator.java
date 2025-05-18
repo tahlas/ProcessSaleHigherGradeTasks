@@ -5,12 +5,19 @@ package integration;
  */
 public class HandlerCreator {
     private final InventoryHandler inventoryHandler;
+    private static final HandlerCreator INSTANCE = new HandlerCreator();
+
+    //singleton
+    public static HandlerCreator getHandlerCreator(){
+        return INSTANCE;
+    }
 
     /**
      * Creates a new instance.
      */
-    public HandlerCreator() {
-        this.inventoryHandler = new InventoryHandler();
+    private HandlerCreator() {
+        //this.inventoryHandler = new InventoryHandler();
+        this.inventoryHandler = InventoryHandler.getInventoryHandler();
     }
 
     /**
