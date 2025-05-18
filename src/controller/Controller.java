@@ -65,9 +65,8 @@ public class Controller {
         Receipt receipt = sale.getReceipt();
         printer.printReceipt(receipt);
         register.presentChangeToGiveToCustomer(sale);
-        register.addPaymentToRegister(sale.getTotalCostAmount());
-
-        //sale.addTotalRevenueObservers(totalRevenueObservers);
+        register.addPaymentToRegister(payment.getTotalCostForSale());
+        //register.addPaymentToRegister(sale.getTotalCostAmount());
         sale.endSale();
     }
 
