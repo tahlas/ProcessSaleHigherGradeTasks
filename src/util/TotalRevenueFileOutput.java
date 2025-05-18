@@ -10,49 +10,41 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class TotalRevenueFileOutput implements TotalRevenueObserver {
-    private ArrayList<Sale> sales = new ArrayList<>();
-    //private PrintWriter logStream;
+    //private ArrayList<Sale> sales = new ArrayList<>();
+    //private ArrayList<Amount> revenues = new ArrayList<>();
+    private Amount totalRevenue = new Amount(0);
+    private PrintWriter logStream;
 
+    /**
+     * Prints the revenue of all sales so far to a file.
+     *
+     * @param revenue The revenue of the sale that recently added.
+     */
     @Override
-    public void newSale(Sale sale) {
-        sales.add(sale);
+    public void newSale(Amount revenue) {
+        totalRevenue = totalRevenue.add(revenue);
         printCurrentState();
     }
 
     private void printCurrentState(){
-        try{
-            PrintWriter logStream = new PrintWriter(new FileWriter("total_revenue.txt"), true);
-            logStream.println("=======================");
-            logStream.println("Current revenue: " + totalRevenueSoFar());
-            logStream.println("=======================");
-        } catch (IOException e) {
-            System.out.println("CANNOT PRINT TO FILE");
-            e.printStackTrace();
+        if(logStream == null){
+            try{
+                logStream = new PrintWriter(new FileWriter("total_revenue.txt"), true);
+
+            } catch (IOException e) {
+                System.out.println("CANNOT PRINT TO FILE");
+                e.printStackTrace();
+            }
         }
+        logStream.println("Current revenue: " + totalRevenue);
+        logStream.println("=======================");
     }
 
-    private Amount totalRevenueSoFar(){
-        Amount sum = new Amount(0);
-        for(Sale sale : sales){
-            sum = sum.add(sale.getTotalCostAmount());
-        }
-        return sum;
-    }
-
-
-//    @Override
-//    public void printTotalRevenue(){
-//        //THIS REUSES CODE FROM FileLogger.java!!!
-//        try{
-//            logStream = new PrintWriter(new FileWriter("total_revenue.txt"), true);
-//        } catch (IOException e) {
-//            System.out.println("CANNOT PRINT TOTAL REVENUE TO FILE");
-//            e.printStackTrace();
+//    private Amount totalRevenueSoFar(){
+//        Amount sum = new Amount(0);
+//        for(Sale sale : sales){
+//            sum = sum.add(sale.getTotalCostAmount());
 //        }
+//        return sum;
 //    }
-//
-//    public void print(Amount totalRevenueSum){
-//        logStream.println(totalRevenueSum);
-//    }
-
 }

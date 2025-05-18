@@ -34,6 +34,7 @@ public class Controller {
      */
     public void startSale(){
         sale = new Sale();
+        sale.addTotalRevenueObservers(totalRevenueObservers); //osäker om rätt plats
     }
 
     /**
@@ -65,7 +66,8 @@ public class Controller {
         printer.printReceipt(receipt);
         register.presentChangeToGiveToCustomer(sale);
         register.addPaymentToRegister(sale.getTotalCostAmount());
-        sale.addTotalRevenueObservers(totalRevenueObservers);
+
+        //sale.addTotalRevenueObservers(totalRevenueObservers);
         sale.endSale();
     }
 

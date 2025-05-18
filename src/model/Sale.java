@@ -39,7 +39,7 @@ public class Sale {
 
     public void endSale(){
         for(TotalRevenueObserver observer : totalRevenueObservers){
-            observer.newSale(this);
+            observer.newSale(this.getTotalCostAmount());
         }
     }
 
