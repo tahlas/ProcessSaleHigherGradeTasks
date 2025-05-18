@@ -9,6 +9,7 @@ public class FileLogger implements Logger {
     private PrintWriter logStream;
     private static final FileLogger INSTANCE = new FileLogger();
 
+    //singleton
     public static FileLogger getLogger(){
         return INSTANCE;
     }
