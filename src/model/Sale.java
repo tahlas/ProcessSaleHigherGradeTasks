@@ -5,6 +5,7 @@ import integration.ItemDTO;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * One single sale made by one single customer and paid with one payment.
@@ -15,6 +16,7 @@ public class Sale {
     private Receipt receipt;
     private final ArrayList<ItemDTO> soldItems;
     private CashPayment payment;
+    private List<TotalRevenueObserver> totalRevenueObservers = new ArrayList<>();
 
     /**
      * Creates a new instance and saves the time of the sale.
@@ -30,10 +32,25 @@ public class Sale {
      * @param payment The payment for the sale.
      */
     public void payForSale(CashPayment payment){
-        Amount total = totalCostAmount();
+        Amount total = getTotalCostAmount();
         payment.setTotalCostForSale(total);
         this.payment = payment;
     }
+
+    public void endSale(){
+        for(TotalRevenueObserver observer : totalRevenueObservers){
+            observer.newSale(this);
+        }
+    }
+
+//    public void addTotalRevenueObserver(TotalRevenueObserver observer){
+//        totalRevenueObservers.add(observer);
+//    }
+
+    public void addTotalRevenueObservers(List<TotalRevenueObserver> observers){
+        totalRevenueObservers.addAll(observers);
+    }
+
 
     /**
      * Gets the payment for the sale.
@@ -129,7 +146,7 @@ public class Sale {
      * Calculates the total cost of the sale.
      * @return The total cost of the sale (so far).
      */
-    public Amount totalCostAmount(){
+    public Amount getTotalCostAmount(){
         Amount sumOfTotalCost = new Amount(0);
         for(ItemDTO item : soldItems){
             //Amount itemQuantity = new Amount(item.getQuantity());

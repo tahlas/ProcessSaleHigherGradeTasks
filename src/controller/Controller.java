@@ -1,12 +1,10 @@
 package controller;
 
 import integration.*;
-import model.Amount;
-import model.CashPayment;
-import model.Sale;
-import model.Receipt;
+import model.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * This is the application's only controller. All calls to the model pass through this class.
@@ -16,6 +14,8 @@ public class Controller {
     private final Register register;
     private final HandlerCreator handlerCreator;
     private Sale sale;
+    private ArrayList<TotalRevenueObserver> totalRevenueObservers = new ArrayList<>();
+    //log?
 
     /**
      * Creates a new instance.
@@ -64,6 +64,14 @@ public class Controller {
         Receipt receipt = sale.getReceipt();
         printer.printReceipt(receipt);
         register.presentChangeToGiveToCustomer(sale);
-        register.addPaymentToRegister(sale.totalCostAmount());
+        register.addPaymentToRegister(sale.getTotalCostAmount());
+        sale.addTotalRevenueObservers(totalRevenueObservers);
+        sale.endSale();
     }
+
+    public void addTotalRevenueObserver(TotalRevenueObserver observer){
+        totalRevenueObservers.add(observer);
+    }
+
+
 }

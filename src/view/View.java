@@ -5,6 +5,7 @@ import integration.InventoryHandler;
 import model.Amount;
 import util.FileLogger;
 import util.Logger;
+import util.TotalRevenueFileOutput;
 
 /**
  * This is a placeholder for the real view. It contains a hardcoded execution with calls to all
@@ -22,6 +23,8 @@ public class View {
      */
     public View(Controller contr){
         this.contr = contr;
+        contr.addTotalRevenueObserver(new TotalRevenueView());
+        contr.addTotalRevenueObserver(new TotalRevenueFileOutput());
     }
 
     /**
@@ -41,7 +44,7 @@ public class View {
         }
         try{
             contr.scanItem(InventoryHandler.DATABASE_FAILURE_ID); //used to throw a database failure exception (hardcoded)
-        } catch (Exception e){//according to page 188?
+        } catch (Exception e){
             logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
         }
