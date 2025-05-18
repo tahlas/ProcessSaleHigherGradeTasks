@@ -5,7 +5,9 @@ package integration;
  */
 public class HandlerCreator {
     private final InventoryHandler inventoryHandler;
+    //private final DiscountHandler discountHandler;
     private static final HandlerCreator INSTANCE = new HandlerCreator();
+
 
     //singleton
     public static HandlerCreator getHandlerCreator(){
@@ -16,8 +18,8 @@ public class HandlerCreator {
      * Creates a new instance.
      */
     private HandlerCreator() {
-        //this.inventoryHandler = new InventoryHandler();
         this.inventoryHandler = InventoryHandler.getInventoryHandler();
+        //this.discountHandler = DiscountHandler.getDiscountHandler();
     }
 
     /**
@@ -27,4 +29,13 @@ public class HandlerCreator {
     public InventoryHandler getInventoryHandler() {
         return inventoryHandler;
     }
+
+//    /**
+//     * Gets the discount handler.
+//     *
+//     * @return The discount handler.
+//     */
+//    public DiscountHandler getDiscountHandler() {
+//        return discountHandler;
+//    }
 }

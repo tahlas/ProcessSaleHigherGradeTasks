@@ -1,4 +1,7 @@
 package integration;
 
-public class DiscountHandler {
+import model.Amount;
+
+public interface DiscountHandler {
+    Amount applyDiscount(Amount totalCost, CustomerID customerID);
 }
