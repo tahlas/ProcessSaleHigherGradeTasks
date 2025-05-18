@@ -66,7 +66,6 @@ public class Controller {
         printer.printReceipt(receipt);
         register.presentChangeToGiveToCustomer(sale);
         register.addPaymentToRegister(payment.getTotalCostForSale());
-        //register.addPaymentToRegister(sale.getTotalCostAmount());
         sale.endSale();
     }
 
