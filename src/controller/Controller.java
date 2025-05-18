@@ -71,6 +71,7 @@ public class Controller {
         sale.endSale();
     }
 
+
     public void addTotalRevenueObserver(TotalRevenueObserver observer){
         totalRevenueObservers.add(observer);
     }

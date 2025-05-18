@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import integration.CustomerID;
 import integration.InventoryHandler;
 import model.Amount;
 import util.FileLogger;
@@ -48,8 +49,7 @@ public class View {
             logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
         }
-        Amount amountPaid = new Amount(100);
-        contr.endSaleAndPay(amountPaid);
+        contr.endSaleAndPay(new Amount(100));
 
         contr.startSale(); //Second sale
         try{
