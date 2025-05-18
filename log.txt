@@ -1,0 +1,2 @@
+Item with itemID: invalidID could not be scanned.
+Could not connect to the database. Item with itemID: databaseFailureID could not be scanned.
