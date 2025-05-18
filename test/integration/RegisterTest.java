@@ -49,7 +49,7 @@ class RegisterTest {
                 "Item cost: " + item.getPrice() + "\n" +
                 "VAT: " + item.getVATRatePercentage() + "%\n" +
                 "Item description: " + item.getDescription() + "\n\n" +
-                "Total cost (incl VAT): " + sale.totalCostAmount() + " SEK\n" +
+                "Total cost (incl VAT): " + sale.getTotalCostAmount() + " SEK\n" +
                 "Total VAT: " + sale.getTotalVAT();
         String result = outContent.toString();
         assertTrue(result.contains(expectedResult), "Wrong register printout.");

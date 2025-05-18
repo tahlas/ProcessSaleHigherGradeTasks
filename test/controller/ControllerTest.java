@@ -95,7 +95,7 @@ class ControllerTest {
         sale.addItem(new ItemDTO("A", "B", new Amount(100), 25, "C"));
         CashPayment payment = new CashPayment(paidAmount);
         sale.payForSale(payment);
-        register.addPaymentToRegister(sale.totalCostAmount());
+        register.addPaymentToRegister(sale.getTotalCostAmount());
         Amount expectedResult = new Amount(1100);
         assertEquals(expectedResult, register.getCashInRegister(), "The register should have the amount 1100");
     }
