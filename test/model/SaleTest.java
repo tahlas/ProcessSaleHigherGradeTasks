@@ -56,7 +56,7 @@ class SaleTest {
         ItemDTO item = new ItemDTO("A", "B", new Amount(0), 0, "C");
         sale.addItem(item);
         Amount expectedResult = new Amount(0);
-        Amount result = sale.totalCostAmount();
+        Amount result = sale.getTotalCostAmount();
         assertEquals(expectedResult, result, "The total cost should be equal to 0");
     }
 
@@ -85,10 +85,10 @@ class SaleTest {
     }
 
     @Test
-    void testTotalCostAmount() {
+    void testGetTotalCostAmount() {
         sale.addItem(new ItemDTO("A", "B", new Amount(125), 25, "C"));
         Amount expectedResult = new Amount(125);
-        Amount result = sale.totalCostAmount();
+        Amount result = sale.getTotalCostAmount();
         assertEquals(expectedResult, result, "The total cost should be equal to 125");
     }
 }
