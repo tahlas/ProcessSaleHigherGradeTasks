@@ -16,6 +16,7 @@ public class Controller {
     private Sale sale;
     private ArrayList<TotalRevenueObserver> totalRevenueObservers = new ArrayList<>();
     //log?
+    //DiscountHandler discountHandler;
 
     /**
      * Creates a new instance.
@@ -27,6 +28,7 @@ public class Controller {
         this.printer = printer;
         this.register = register;
         this.handlerCreator = handlerCreator;
+        //this.discountHandler = discountHandler; //shouldnt this be in handlerCreator?
     }
 
     /**
@@ -67,6 +69,10 @@ public class Controller {
         register.presentChangeToGiveToCustomer(sale);
         register.addPaymentToRegister(payment.getTotalCostForSale());
         sale.endSale();
+    }
+
+    public void applyDiscount(DiscountHandler discountHandler, CustomerID customerID){
+        sale.applyDiscount(discountHandler, customerID);
     }
 
 

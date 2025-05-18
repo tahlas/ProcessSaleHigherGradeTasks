@@ -2,6 +2,8 @@ package view;
 
 import controller.Controller;
 import integration.CustomerID;
+import integration.DiscountHandler;
+import integration.DiscountHandlerFactory;
 import integration.InventoryHandler;
 import model.Amount;
 import util.FileLogger;
@@ -49,8 +51,12 @@ public class View {
             logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
         }
-        contr.endSaleAndPay(new Amount(100));
+        CustomerID customer1 = new CustomerID(70, false);
+        DiscountHandler discountHandler = DiscountHandlerFactory.getDiscountHandler(customer1);
+        contr.applyDiscount(discountHandler, customer1);
 
+        contr.endSaleAndPay(new Amount(100));
+        //===============================================================================
         contr.startSale(); //Second sale
         try{
             contr.scanItem("abc123");

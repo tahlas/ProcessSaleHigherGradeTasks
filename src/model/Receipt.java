@@ -42,6 +42,11 @@ public class Receipt {
         builder.append(payment.getTotalCostForSale());//builder.append(sale.totalCost());
         endSection(builder);
 
+        //discount
+        builder.append("Discounted total: ");
+        builder.append(sale.getAmountToPay());
+        endSection(builder);
+
         builder.append("VAT: ");
         appendLine(builder, String.valueOf(sale.getTotalVAT()));
 

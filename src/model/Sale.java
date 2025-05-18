@@ -1,5 +1,7 @@
 package model;
 
+import integration.CustomerID;
+import integration.DiscountHandler;
 import integration.ItemDTO;
 
 import java.time.LocalDate;
@@ -17,7 +19,8 @@ public class Sale {
     private final ArrayList<ItemDTO> soldItems;
     private CashPayment payment;
     private List<TotalRevenueObserver> totalRevenueObservers = new ArrayList<>();
-    private Amount totalCost;
+    private Amount discountedTotal;
+    private DiscountHandler discountHandler;
 
     /**
      * Creates a new instance and saves the time of the sale.
@@ -28,12 +31,27 @@ public class Sale {
         this.soldItems = new ArrayList<>();
     }
 
+    public void applyDiscount(DiscountHandler discountHandler, CustomerID customerID){
+        this.discountHandler = discountHandler;
+        Amount total = getTotalCostAmount();
+        this.discountedTotal = discountHandler.applyDiscount(total, customerID);
+    }
+
+    public Amount getAmountToPay(){
+        return isDiscountApplied() ? discountedTotal : getTotalCostAmount();
+    }
+
+    private boolean isDiscountApplied(){
+        return discountedTotal != null;
+    }
+
     /**
      * This pays for the sale.
      * @param payment The payment for the sale.
      */
     public void payForSale(CashPayment payment){
-        Amount total = getTotalCostAmount();
+        //Amount total = getTotalCostAmount();
+        Amount total = getAmountToPay();
         payment.setTotalCostForSale(total);
         this.payment = payment;
     }

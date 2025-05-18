@@ -1,9 +1,7 @@
 package startup;
 
 import controller.Controller;
-import integration.HandlerCreator;
-import integration.Printer;
-import integration.Register;
+import integration.*;
 import model.Amount;
 import view.View;
 
