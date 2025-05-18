@@ -62,7 +62,7 @@ public class Register {
 
         endSection(builder);
         builder.append("Total cost (incl VAT): ");
-        builder.append(sale.totalCostAmount());
+        builder.append(sale.getTotalCostAmount());
         appendCurrency(builder);
         endSection(builder);
 
@@ -97,5 +97,4 @@ public class Register {
     public Amount getCashInRegister() {
         return cashInRegister;
     }
-
 }
