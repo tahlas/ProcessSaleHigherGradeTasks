@@ -43,10 +43,6 @@ public class Sale {
         }
     }
 
-//    public void addTotalRevenueObserver(TotalRevenueObserver observer){
-//        totalRevenueObservers.add(observer);
-//    }
-
     public void addTotalRevenueObservers(List<TotalRevenueObserver> observers){
         totalRevenueObservers.addAll(observers);
     }
