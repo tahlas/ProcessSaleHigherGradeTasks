@@ -12,7 +12,7 @@ class HandlerCreatorTest {
 
     @BeforeEach
     void setUp() {
-        handlerCreator = new HandlerCreator();
+        handlerCreator = HandlerCreator.getHandlerCreator();//handlerCreator = new HandlerCreator();
     }
 
     @AfterEach

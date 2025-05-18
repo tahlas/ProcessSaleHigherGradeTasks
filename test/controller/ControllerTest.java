@@ -21,7 +21,7 @@ class ControllerTest {
     @BeforeEach
     void setUp() {
         sale = new Sale();
-        handlerCreator = new HandlerCreator();
+        handlerCreator = HandlerCreator.getHandlerCreator();//handlerCreator = new HandlerCreator();
         inventory = handlerCreator.getInventoryHandler();
     }
 
