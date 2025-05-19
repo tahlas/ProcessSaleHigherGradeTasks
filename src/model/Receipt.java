@@ -39,7 +39,7 @@ public class Receipt {
         endSection(builder);
 
         builder.append("Total: ");
-        builder.append(payment.getTotalCostForSale());//builder.append(sale.totalCost());
+        builder.append(sale.getTotalCostAmount());//builder.append(payment.getTotalCostForSale());//builder.append(sale.totalCost());
         endSection(builder);
 
         //discount
