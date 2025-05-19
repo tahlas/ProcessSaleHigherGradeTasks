@@ -15,7 +15,7 @@ public class InventoryHandler {
 
     /**
      * Gets the only instance of the inventory handler (singleton).
-     * @return
+     * @return The instance of the inventory handler.
      */
     public static InventoryHandler getInventoryHandler(){
         return INSTANCE;
@@ -44,7 +44,6 @@ public class InventoryHandler {
             }
             if(itemID.equals(DATABASE_FAILURE_ID)){
                 throw new SQLException();
-                //throw new DatabaseFailureException("databaseFailureID");
             }
         }
         throw new ItemNotFoundException(itemID);
