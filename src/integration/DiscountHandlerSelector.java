@@ -1,7 +1,6 @@
 package integration;
 
-public class DiscountHandlerFactory {
-    //not sure if static or not
+public class DiscountHandlerSelector {
     public static DiscountHandler getDiscountHandler(CustomerID customerID){
         if(customerID.getAge() >= 65){
             return new SeniorDiscountHandler();
