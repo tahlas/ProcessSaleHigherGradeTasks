@@ -53,11 +53,12 @@ public class View {
         }
         CustomerID customer1 = new CustomerID(70, false);
         DiscountHandler discountHandler = DiscountHandlerSelector.getDiscountHandler(customer1);
-        contr.applyDiscount(discountHandler, customer1);
+        contr.applyDiscount(discountHandler);
+        //contr.applyDiscount(discountHandler, customer1);
 
         contr.endSaleAndPay(new Amount(100));
-        //===============================================================================
-        contr.startSale(); //Second sale
+        //=========================SECOND SALE=================================
+        contr.startSale();
         try{
             contr.scanItem("abc123");
         }catch (Exception e){

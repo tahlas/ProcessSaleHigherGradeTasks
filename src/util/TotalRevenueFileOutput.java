@@ -7,11 +7,8 @@ import model.TotalRevenueObserver;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 public class TotalRevenueFileOutput implements TotalRevenueObserver {
-    //private ArrayList<Sale> sales = new ArrayList<>();
-    //private ArrayList<Amount> revenues = new ArrayList<>();
     private Amount totalRevenue = new Amount(0);
     private PrintWriter logStream;
 
@@ -39,12 +36,4 @@ public class TotalRevenueFileOutput implements TotalRevenueObserver {
         logStream.println("Current revenue: " + totalRevenue);
         logStream.println("=======================");
     }
-
-//    private Amount totalRevenueSoFar(){
-//        Amount sum = new Amount(0);
-//        for(Sale sale : sales){
-//            sum = sum.add(sale.getTotalCostAmount());
-//        }
-//        return sum;
-//    }
 }

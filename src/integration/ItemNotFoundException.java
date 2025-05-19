@@ -15,10 +15,10 @@ public class ItemNotFoundException  extends Exception{
         this.itemIDThatCannotBeFound = itemID;
     }
 
-    /**
-     * @return The item ID that cannot be added to the sale.
-     */
-    public String getItemIDThatCanNotBeFound() {
-        return itemIDThatCannotBeFound;
-    }
+//    /**
+//     * @return The item ID that cannot be added to the sale.
+//     */
+//    public String getItemIDThatCanNotBeFound() {
+//        return itemIDThatCannotBeFound;
+//    }
 }

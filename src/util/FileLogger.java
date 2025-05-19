@@ -1,6 +1,5 @@
 package util;
 
-import java.awt.event.WindowStateListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,6 +47,4 @@ public class FileLogger implements Logger {
         LocalTime now = LocalTime.now();
         return now.toString();
     }
-
-    
 }

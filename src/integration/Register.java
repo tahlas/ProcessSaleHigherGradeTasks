@@ -14,7 +14,6 @@ public class Register {
      * Creates a new instance and sets the amount of cash in the register.
      */
     public Register(Amount cashInRegister){
-        //this.cashInRegister = new Amount(1000);
         this.cashInRegister = cashInRegister;
     }
 
@@ -51,7 +50,6 @@ public class Register {
      */
     private String currentScannedItemString(Sale sale, ItemDTO lastScannedItem){
         StringBuilder builder = new StringBuilder();
-        //ItemDTO lastScannedItem = sale.getSoldItems().getLast(); // will have issues
 
         builder.append("Add 1 item with item id ");
         builder.append(lastScannedItem.getID());

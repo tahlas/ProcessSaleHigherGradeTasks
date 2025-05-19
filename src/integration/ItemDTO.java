@@ -68,11 +68,6 @@ public class ItemDTO {
         return builder.toString();
     }
 
-    /**
-     * Appends a String and creates a new line at the end.
-     * @param builder The StringBuilder to append the line to.
-     * @param line The line to append.
-     */
     private void appendLine(StringBuilder builder, String line){
         builder.append(line);
         builder.append("\n");

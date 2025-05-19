@@ -1,7 +1,8 @@
 package model;
 
-
-
+/**
+ * Observer used to show total revenue.
+ */
 public interface TotalRevenueObserver {
 
     /**

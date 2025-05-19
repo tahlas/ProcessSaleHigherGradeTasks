@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         Printer printer = new Printer();
         Register register = new Register(new Amount(1000));
-        HandlerCreator creator = HandlerCreator.getHandlerCreator();//HandlerCreator creator = new HandlerCreator();
+        HandlerCreator creator = HandlerCreator.getHandlerCreator();
         Controller contr = new Controller(printer, register, creator);
         View view = new View(contr);
         view.runFakeExecution();
