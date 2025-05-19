@@ -15,11 +15,10 @@ public class Controller {
     private final HandlerCreator handlerCreator;
     private Sale sale;
     private ArrayList<TotalRevenueObserver> totalRevenueObservers = new ArrayList<>();
-    //log?
-    //DiscountHandler discountHandler;
 
     /**
      * Creates a new instance.
+     *
      * @param printer The printer that is used to print the receipt.
      * @param register The register that is used by the cashier.
      * @param handlerCreator The handler creator that is used to create other handlers.
@@ -28,7 +27,6 @@ public class Controller {
         this.printer = printer;
         this.register = register;
         this.handlerCreator = handlerCreator;
-        //this.discountHandler = discountHandler; //shouldnt this be in handlerCreator?
     }
 
     /**
@@ -36,11 +34,13 @@ public class Controller {
      */
     public void startSale(){
         sale = new Sale();
-        sale.addTotalRevenueObservers(totalRevenueObservers); //osäker om rätt plats
+        sale.addTotalRevenueObservers(totalRevenueObservers);
     }
 
     /**
      * Scans an item.
+     *
+     * @param itemID the itemID of the item to scan.
      */
     public void scanItem(String itemID){
         InventoryHandler inventoryHandler = handlerCreator.getInventoryHandler();
@@ -71,12 +71,20 @@ public class Controller {
         sale.endSale();
     }
 
+    /**
+     * Applies a discount to the sale.
+     *
+     * @param discountHandler The discount handler that will be used to apply the discount.
+     */
     public void applyDiscount(DiscountHandler discountHandler){
         sale.applyDiscount(discountHandler);
-        //sale.applyDiscount(discountHandler, customerID);
     }
 
-
+    /**
+     * Adds a total revenue observer.
+     *
+     * @param observer The observer to add.
+     */
     public void addTotalRevenueObserver(TotalRevenueObserver observer){
         totalRevenueObservers.add(observer);
     }
