@@ -71,8 +71,9 @@ public class Controller {
         sale.endSale();
     }
 
-    public void applyDiscount(DiscountHandler discountHandler, CustomerID customerID){
-        sale.applyDiscount(discountHandler, customerID);
+    public void applyDiscount(DiscountHandler discountHandler){
+        sale.applyDiscount(discountHandler);
+        //sale.applyDiscount(discountHandler, customerID);
     }
 
 
