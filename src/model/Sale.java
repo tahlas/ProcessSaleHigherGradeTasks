@@ -21,6 +21,7 @@ public class Sale {
     private List<TotalRevenueObserver> totalRevenueObservers = new ArrayList<>();
     private Amount discountedTotal;
     private DiscountHandler discountHandler;
+    private Amount totalCost;
 
     /**
      * Creates a new instance and saves the time of the sale.
@@ -33,9 +34,37 @@ public class Sale {
 
     public void applyDiscount(DiscountHandler discountHandler, CustomerID customerID){
         this.discountHandler = discountHandler;
-        Amount total = getTotalCostAmount();
-        this.discountedTotal = discountHandler.applyDiscount(total, customerID);
+        //Amount total = getTotalCostAmount();
+        this.totalCost = getTotalCostAmount();
+        this.discountedTotal = discountHandler.applyDiscount(totalCost, customerID);
     }
+    //unsure if should be used insted of other method
+    public Amount getTotalCostAmount(){
+        return totalCost != null ? totalCost : calculateTotalCost();
+    }
+
+    private Amount calculateTotalCost(){
+        Amount sumOfTotalCost = new Amount(0);
+        for(ItemDTO item : soldItems){
+            Amount totalItemPrice = calculateTotalItemPrice(item);
+            sumOfTotalCost = sumOfTotalCost.add(totalItemPrice);
+        }
+        return sumOfTotalCost;
+    }
+
+    // /**
+    //  * Calculates the total cost of the sale.
+    //  * @return The total cost of the sale (so far).
+    //  */
+    // public Amount getTotalCostAmount(){
+    //     Amount sumOfTotalCost = new Amount(0);
+    //     for(ItemDTO item : soldItems){
+    //         Amount totalItemPrice = calculateTotalItemPrice(item);
+    //         sumOfTotalCost = sumOfTotalCost.add(totalItemPrice);
+    //     }
+
+    //     return sumOfTotalCost;
+    // }
 
     public Amount getAmountToPay(){
         return isDiscountApplied() ? discountedTotal : getTotalCostAmount();
@@ -57,8 +86,10 @@ public class Sale {
     }
 
     public void endSale(){
+        Amount revenueToNotify = isDiscountApplied() ? discountedTotal : getTotalCostAmount();
         for(TotalRevenueObserver observer : totalRevenueObservers){
-            observer.newSale(this.getTotalCostAmount());
+            observer.newSale(revenueToNotify);
+            //observer.newSale(this.getTotalCostAmount());
         }
     }
 
@@ -157,19 +188,8 @@ public class Sale {
         return numerator.divide(denominator);
     }
 
-    /**
-     * Calculates the total cost of the sale.
-     * @return The total cost of the sale (so far).
-     */
-    public Amount getTotalCostAmount(){
-        Amount sumOfTotalCost = new Amount(0);
-        for(ItemDTO item : soldItems){
-            Amount totalItemPrice = calculateTotalItemPrice(item);
-            sumOfTotalCost = sumOfTotalCost.add(totalItemPrice);
-        }
+    
 
-        return sumOfTotalCost;
-    }
 
     private void setTimeOfSale(){
         saleTime = LocalTime.now();
