@@ -18,7 +18,6 @@ public class TotalRevenueView implements TotalRevenueObserver {
      */
     @Override
     public void newSale(Amount revenue){
-        //sales.add(sale);
         totalRevenue = totalRevenue.add(revenue);
         printCurrentState();
     }

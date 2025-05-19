@@ -43,7 +43,7 @@ public class View {
             contr.scanItem("invalidID");
         } catch (Exception e){ //according to page 188?
             logger.log(e.getMessage());
-            errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
+            errorMsgHandler.showErrorMessage(e.getMessage());
         }
         try{
             contr.scanItem(InventoryHandler.DATABASE_FAILURE_ID); //used to throw a database failure exception (hardcoded)
