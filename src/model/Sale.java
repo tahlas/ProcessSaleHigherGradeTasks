@@ -1,6 +1,5 @@
 package model;
 
-import integration.CustomerID;
 import integration.DiscountHandler;
 import integration.ItemDTO;
 
@@ -32,13 +31,17 @@ public class Sale {
         this.soldItems = new ArrayList<>();
     }
 
-    public void applyDiscount(DiscountHandler discountHandler, CustomerID customerID){
+    public void applyDiscount(DiscountHandler discountHandler){
         this.discountHandler = discountHandler;
-        //Amount total = getTotalCostAmount();
         this.totalCost = getTotalCostAmount();
-        this.discountedTotal = discountHandler.applyDiscount(totalCost, customerID);
+        this.discountedTotal = discountHandler.applyDiscount(totalCost);
     }
-    //unsure if should be used insted of other method
+
+    /**
+     * Gets the total cost.
+     *
+     * @return The total cost.
+     */
     public Amount getTotalCostAmount(){
         return totalCost != null ? totalCost : calculateTotalCost();
     }
@@ -51,20 +54,6 @@ public class Sale {
         }
         return sumOfTotalCost;
     }
-
-    // /**
-    //  * Calculates the total cost of the sale.
-    //  * @return The total cost of the sale (so far).
-    //  */
-    // public Amount getTotalCostAmount(){
-    //     Amount sumOfTotalCost = new Amount(0);
-    //     for(ItemDTO item : soldItems){
-    //         Amount totalItemPrice = calculateTotalItemPrice(item);
-    //         sumOfTotalCost = sumOfTotalCost.add(totalItemPrice);
-    //     }
-
-    //     return sumOfTotalCost;
-    // }
 
     public Amount getAmountToPay(){
         return isDiscountApplied() ? discountedTotal : getTotalCostAmount();
@@ -79,7 +68,6 @@ public class Sale {
      * @param payment The payment for the sale.
      */
     public void payForSale(CashPayment payment){
-        //Amount total = getTotalCostAmount();
         Amount total = getAmountToPay();
         payment.setTotalCostForSale(total);
         this.payment = payment;
@@ -89,14 +77,12 @@ public class Sale {
         Amount revenueToNotify = isDiscountApplied() ? discountedTotal : getTotalCostAmount();
         for(TotalRevenueObserver observer : totalRevenueObservers){
             observer.newSale(revenueToNotify);
-            //observer.newSale(this.getTotalCostAmount());
         }
     }
 
     public void addTotalRevenueObservers(List<TotalRevenueObserver> observers){
         totalRevenueObservers.addAll(observers);
     }
-
 
     /**
      * Gets the payment for the sale.
@@ -187,9 +173,6 @@ public class Sale {
         Amount denominator = oneHundred.add(VATRate);
         return numerator.divide(denominator);
     }
-
-    
-
 
     private void setTimeOfSale(){
         saleTime = LocalTime.now();
