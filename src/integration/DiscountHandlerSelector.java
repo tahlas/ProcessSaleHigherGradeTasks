@@ -8,6 +8,6 @@ public class DiscountHandlerSelector {
         if(customerID.getIsStudent()){
             return new StudentDiscountHandler();
         }
-        return new NoDIscountHandler();
+        return new NoDiscountHandler();
     }
 }

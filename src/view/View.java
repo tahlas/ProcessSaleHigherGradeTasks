@@ -3,7 +3,7 @@ package view;
 import controller.Controller;
 import integration.CustomerID;
 import integration.DiscountHandler;
-import integration.DiscountHandlerFactory;
+import integration.DiscountHandlerSelector;
 import integration.InventoryHandler;
 import model.Amount;
 import util.FileLogger;
@@ -52,7 +52,7 @@ public class View {
             errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
         }
         CustomerID customer1 = new CustomerID(70, false);
-        DiscountHandler discountHandler = DiscountHandlerFactory.getDiscountHandler(customer1);
+        DiscountHandler discountHandler = DiscountHandlerSelector.getDiscountHandler(customer1);
         contr.applyDiscount(discountHandler, customer1);
 
         contr.endSaleAndPay(new Amount(100));
