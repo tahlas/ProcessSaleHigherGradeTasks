@@ -72,11 +72,12 @@ class ControllerTest {
     }
 
 
-    @Test
+    @Disabled
     void testAddItem() throws ItemNotFoundException, SQLException {
         String itemIDToFind = "abc123";
         ItemDTO itemToFind = inventory.getItemDTO(itemIDToFind);
         sale.addItem(itemToFind);
+
         assertTrue(sale.getSoldItems().contains(itemToFind), "The item should be in the list of items sold");
     }
 

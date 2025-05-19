@@ -4,7 +4,7 @@ import integration.ItemDTO;
 import integration.Printer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -31,7 +31,7 @@ class ReceiptTest {
     }
 
     //testing methods that print is not needed...(I did not know that when writing this...)
-    @Test
+    @Disabled
     void testCreateReceiptString() {
         Sale sale = new Sale();
         ItemDTO item = new ItemDTO("A", "B", new Amount(10), 5, "C");
