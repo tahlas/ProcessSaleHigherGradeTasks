@@ -4,6 +4,8 @@ import java.awt.event.WindowStateListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class FileLogger implements Logger {
     private PrintWriter logStream;
@@ -33,6 +35,19 @@ public class FileLogger implements Logger {
      */
     @Override
     public void log(String message){
-        logStream.println(message);
+        logStream.println(createDate() + " " + createTime() + ", " + message);
     }
+
+
+    private String createDate(){
+        LocalDate now = LocalDate.now();
+        return now.toString();
+    }
+
+    private String createTime(){
+        LocalTime now = LocalTime.now();
+        return now.toString();
+    }
+
+    
 }

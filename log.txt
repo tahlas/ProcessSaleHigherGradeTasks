@@ -1,2 +1,2 @@
-Item with itemID: invalidID could not be scanned.
-Could not connect to the database. Item with itemID: databaseFailureID could not be scanned.
+2025-05-19 15:47:59.594643900, Item with itemID: invalidID could not be scanned.
+2025-05-19 15:47:59.613880700, Could not connect to the database. Item with itemID: databaseFailureID could not be scanned.
