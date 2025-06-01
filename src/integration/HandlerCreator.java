@@ -15,7 +15,7 @@ public class HandlerCreator {
     /**
      * Creates a new instance.
      */
-    private HandlerCreator() {
+    public HandlerCreator() {
         this.inventoryHandler = InventoryHandler.getInventoryHandler();
     }
 
