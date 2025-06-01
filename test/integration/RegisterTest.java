@@ -1,11 +1,9 @@
 package integration;
 
 import model.Amount;
-import model.CashPayment;
 import model.Sale;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -47,13 +45,13 @@ class RegisterTest {
 //        assertTrue(result.contains("Change to give the customer: 10."),"The change should be printed.");
 //    }
 
-    @Disabled
-    void testCashInRegisterSystemOut(){
-        Amount amountToIncreaseWith = new Amount(100);
-        register.addPaymentToRegister(amountToIncreaseWith);
-        String result = outContent.toString();
-        assertTrue(result.contains("1100.0"), "The register should print the amount of cash in the register.");
-    }
+//    @Disabled
+//    void testCashInRegisterSystemOut(){
+//        Amount amountToIncreaseWith = new Amount(100);
+//        register.addPaymentToRegister(amountToIncreaseWith);
+//        String result = outContent.toString();
+//        assertTrue(result.contains("1100.0"), "The register should print the amount of cash in the register.");
+//    }
 
 //    @Test
 //    void testPresentCurrentScannedItem() {
