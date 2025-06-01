@@ -5,10 +5,10 @@ package integration;
  */
 public class DiscountHandlerSelector {
     public static DiscountHandler getDiscountHandler(CustomerID customerID){
-        if(customerID.getAge() >= 65){
+        if(customerID != null && customerID.getAge() >= 65){
             return new SeniorDiscountHandler();
         }
-        if(customerID.getIsStudent()){
+        if(customerID != null && customerID.getIsStudent()){
             return new StudentDiscountHandler();
         }
         return new NoDiscountHandler();
