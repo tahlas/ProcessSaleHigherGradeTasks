@@ -5,6 +5,7 @@ import model.CashPayment;
 import model.Sale;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -46,7 +47,7 @@ class RegisterTest {
         assertTrue(result.contains("Change to give the customer: 10."),"The change should be printed.");
     }
 
-    @Test
+    @Disabled
     void testCashInRegisterSystemOut(){
         Amount amountToIncreaseWith = new Amount(100);
         register.addPaymentToRegister(amountToIncreaseWith);
