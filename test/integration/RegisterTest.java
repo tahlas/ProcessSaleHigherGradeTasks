@@ -1,6 +1,7 @@
 package integration;
 
 import model.Amount;
+import model.CashPayment;
 import model.Sale;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,23 @@ class RegisterTest {
         System.setOut(originalSysOut);
     }
 
-    //Testing methods that only produce output is not needed...
+    @Test
+    void testPresentChangeToGiveToCustomer(){
+        sale.addItem(new ItemDTO("ID", "NAME", new Amount(90), 10, "DESCRIPTION"));
+        sale.payForSale(new CashPayment(new Amount(100)));
+        register.presentChangeToGiveToCustomer(sale);
+        String result = outContent.toString();
+        assertTrue(result.contains("Change to give the customer: 10."),"The change should be printed.");
+    }
+
+    @Test
+    void testCashInRegisterSystemOut(){
+        Amount amountToIncreaseWith = new Amount(100);
+        register.addPaymentToRegister(amountToIncreaseWith);
+        String result = outContent.toString();
+        assertTrue(result.contains("1100.0"), "The register should print the amount of cash in the register.");
+    }
+
     @Test
     void testPresentCurrentScannedItem() {
         ItemDTO item = new ItemDTO("A", "B", new Amount(125), 25, "C" );
