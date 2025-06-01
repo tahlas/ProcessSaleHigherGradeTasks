@@ -49,20 +49,9 @@ public class View {
             errorMsgHandler.showErrorMessage(e.getMessage());
         }
         CustomerID customer1 = new CustomerID(70, false);
-        //DiscountHandler discountHandler = DiscountHandlerSelector.getDiscountHandler(customer1); //wrong
-        //contr.applyDiscount(discountHandler); //wrong
-        //contr.applyDiscount(discountHandler, customer1);
 
+        System.out.println("------------------ Begin Receipt -------------------");
         contr.endSaleAndPay(new Amount(100), customer1);
-        //=========================SECOND SALE=================================
-        contr.startSale();
-        try{
-            contr.scanItem("abc123");
-        }catch (Exception e){
-            logger.log(e.getMessage());
-            errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
-        }
-        CustomerID customer2 = null;
-        contr.endSaleAndPay(new Amount(100),customer2);
+        System.out.println("------------------ End Receipt -------------------");
     }
 }
