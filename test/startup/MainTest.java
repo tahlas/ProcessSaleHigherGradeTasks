@@ -13,6 +13,32 @@ import static org.junit.jupiter.api.Assertions.*;
  * This uses the test from lecture 10. It is currently a placeholder...
  */
 class MainTest {
+    private ByteArrayOutputStream outContent;
+    private PrintStream originalSysOut;
+
+    @BeforeEach
+    void setUpStreams(){
+        originalSysOut = System.out;
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    void cleanUpStreams(){
+        outContent = null;
+        System.setOut(originalSysOut);
+    }
+
+    @Test
+    void testMain() {
+        String[] args = null;
+        Main.main(args);
+        String result = outContent.toString();
+        assertTrue(result.contains("Begin Receipt"),"The receipt header should be printed.");
+        assertTrue(result.contains("End receipt"), "The receipt footer should be printed.");
+    }
+
+
 //    private Main instanceToTest;
 //    private ByteArrayOutputStream printoutBuffer;
 //    private PrintStream originalSysOut;
