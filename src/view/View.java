@@ -52,11 +52,11 @@ public class View {
             errorMsgHandler.showErrorMessage(e.getMessage());
         }
         CustomerID customer1 = new CustomerID(70, false);
-        DiscountHandler discountHandler = DiscountHandlerSelector.getDiscountHandler(customer1);
-        contr.applyDiscount(discountHandler);
+        //DiscountHandler discountHandler = DiscountHandlerSelector.getDiscountHandler(customer1); //wrong
+        //contr.applyDiscount(discountHandler); //wrong
         //contr.applyDiscount(discountHandler, customer1);
 
-        contr.endSaleAndPay(new Amount(100));
+        contr.endSaleAndPay(new Amount(100), customer1);
         //=========================SECOND SALE=================================
         contr.startSale();
         try{
@@ -65,6 +65,7 @@ public class View {
             logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
         }
-        contr.endSaleAndPay(new Amount(100));
+        CustomerID customer2 = null;
+        contr.endSaleAndPay(new Amount(100),customer2);
     }
 }
