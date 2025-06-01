@@ -1,7 +1,7 @@
 package util;
 
 /**
- * Specifies a message that will be logged. The implementing class decides where the log is.
+ * Specifies a message that will be logged. The implementing class decides where the log is..
  */
 public interface Logger {
     /**
