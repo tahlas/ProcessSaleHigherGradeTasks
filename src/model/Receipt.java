@@ -29,7 +29,7 @@ public class Receipt {
         StringBuilder builder = new StringBuilder();
         CashPayment payment = sale.getPayment();
 
-        appendLine(builder, "------------------ Begin Receipt -------------------");
+        //appendLine(builder, "------------------ Begin Receipt -------------------");
         builder.append("Time of Sale: ");
         builder.append(sale.getDateOfSale());
         builder.append(" ");
@@ -56,7 +56,7 @@ public class Receipt {
         builder.append("Change: ");
         builder.append(payment.getChange());
         appendCurrencyLine(builder);
-        appendLine(builder, "------------------ End receipt ---------------------");
+        //appendLine(builder, "------------------ End receipt ---------------------");
 
         return builder.toString();
     }
