@@ -40,7 +40,7 @@ public class Register {
      */
     public void addPaymentToRegister(Amount amountToIncreaseWith){
         this.cashInRegister = cashInRegister.add(amountToIncreaseWith);
-        System.out.println("Cash in register: " + cashInRegister);
+        //System.out.println("Cash in register: " + cashInRegister);
     }
 
     /**
