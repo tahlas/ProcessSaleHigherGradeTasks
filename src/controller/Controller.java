@@ -42,7 +42,7 @@ public class Controller {
      *
      * @param itemID the itemID of the item to scan.
      */
-    public void scanItem(String itemID){
+    public String scanItem(String itemID){
         InventoryHandler inventoryHandler = handlerCreator.getInventoryHandler();
         ItemDTO scannedItem;
         try{
@@ -54,7 +54,7 @@ public class Controller {
         }
 
         sale.addItem(scannedItem);
-        register.presentCurrentScannedItem(sale, scannedItem);
+        return register.presentCurrentScannedItem(sale, scannedItem);
     }
 
     /**
@@ -71,15 +71,16 @@ public class Controller {
 
     }
 
-    public void printReceipt(){
+    public String printReceipt(){
         Receipt receipt = sale.getReceipt();
-        printer.printReceipt(receipt);
+        return printer.printReceipt(receipt);
     }
 
-    public void displayInfoToRegister(){
-        register.presentChangeToGiveToCustomer(sale);
+    public String displayInfoToRegister(){
+        String presentChangeToGive = register.presentChangeToGiveToCustomer(sale);
         register.addPaymentToRegister(sale.getPayment().getTotalCostForSale());
         sale.endSale();
+        return presentChangeToGive;
     }
 
 

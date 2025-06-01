@@ -20,18 +20,20 @@ public class Register {
     /**
      * Shows information about the item that is scanned and the running total (including VAT).
      */
-    public void presentCurrentScannedItem(Sale sale, ItemDTO scannedItem) {
-        String printString = currentScannedItemString(sale, scannedItem);
-        System.out.println(printString);
+    public String presentCurrentScannedItem(Sale sale, ItemDTO scannedItem) {
+        return currentScannedItemString(sale, scannedItem);
+        //String printString = currentScannedItemString(sale, scannedItem);
+        //System.out.println(printString);
     }
 
     /**
      * Shows the change that the cashier must give to the customer.
      * @param sale The sale where the change exists in.
      */
-    public void presentChangeToGiveToCustomer(Sale sale){
+    public String presentChangeToGiveToCustomer(Sale sale){
         CashPayment payment = sale.getPayment();
-        System.out.println("Change to give the customer: " + payment.getChange());
+        return "Change to give the customer: " + payment.getChange();
+        //System.out.println("Change to give the customer: " + payment.getChange());
     }
 
     /**

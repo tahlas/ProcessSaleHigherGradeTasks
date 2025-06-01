@@ -33,10 +33,10 @@ public class View {
     public void runFakeExecution(){
         contr.startSale();
         try{
-            contr.scanItem("abc123");
-            contr.scanItem("abc123");
-            contr.scanItem("def456");
-            contr.scanItem("invalidID");
+            System.out.println(contr.scanItem("abc123"));
+            System.out.println(contr.scanItem("abc123"));
+            System.out.println(contr.scanItem("def456"));
+            System.out.println(contr.scanItem("invalidID"));
         } catch (Exception e){
             logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage(e.getMessage());
@@ -52,8 +52,10 @@ public class View {
         contr.pay(new Amount(100), customer1);
 
         System.out.println("------------------ Begin Receipt -------------------");
-        contr.printReceipt();
+        System.out.println(contr.printReceipt());
         System.out.println("------------------ End Receipt -------------------");
-        contr.displayInfoToRegister();
+        System.out.println(contr.displayInfoToRegister());
     }
+
+
 }
