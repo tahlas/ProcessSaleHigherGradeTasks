@@ -10,7 +10,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * This uses the test from lecture 10. It is currently a placeholder...
+ * Tests system.out.
  */
 class MainTest {
     private ByteArrayOutputStream outContent;
@@ -35,7 +35,7 @@ class MainTest {
         Main.main(args);
         String result = outContent.toString();
         assertTrue(result.contains("Begin Receipt"),"The receipt header should be printed.");
-        assertTrue(result.contains("End receipt"), "The receipt footer should be printed.");
+        assertTrue(result.contains("End Receipt"), "The receipt footer should be printed.");
     }
 
 
