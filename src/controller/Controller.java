@@ -61,7 +61,9 @@ public class Controller {
      * Ends the sale and processes the payment.
      * @param amountPaid The total price of the sale.
      */
-    public void endSaleAndPay(Amount amountPaid){
+    public void endSaleAndPay(Amount amountPaid, CustomerID customerID){
+        DiscountHandler discountHandler = DiscountHandlerSelector.getDiscountHandler(customerID);
+        applyDiscount(discountHandler);
         CashPayment payment = new CashPayment(amountPaid);
         sale.payForSale(payment);
         Receipt receipt = sale.getReceipt();
@@ -71,12 +73,13 @@ public class Controller {
         sale.endSale();
     }
 
+
     /**
      * Applies a discount to the sale.
      *
      * @param discountHandler The discount handler that will be used to apply the discount.
      */
-    public void applyDiscount(DiscountHandler discountHandler){
+    private void applyDiscount(DiscountHandler discountHandler){
         sale.applyDiscount(discountHandler);
     }
 
