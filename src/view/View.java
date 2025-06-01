@@ -32,26 +32,28 @@ public class View {
      */
     public void runFakeExecution(){
         contr.startSale();
-        String unexpectedErrorMsg = "An unexpected error occurred.";
         try{
             contr.scanItem("abc123");
             contr.scanItem("abc123");
             contr.scanItem("def456");
             contr.scanItem("invalidID");
-        } catch (Exception e){ //according to page 188?
+        } catch (Exception e){
             logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage(e.getMessage());
         }
         try{
-            contr.scanItem(InventoryHandler.DATABASE_FAILURE_ID); //used to throw a database failure exception (hardcoded)
+            contr.scanItem(InventoryHandler.DATABASE_FAILURE_ID);
         } catch (Exception e){
             logger.log(e.getMessage());
             errorMsgHandler.showErrorMessage(e.getMessage());
         }
         CustomerID customer1 = new CustomerID(70, false);
 
+        contr.pay(new Amount(100), customer1);
+
         System.out.println("------------------ Begin Receipt -------------------");
-        contr.endSaleAndPay(new Amount(100), customer1);
+        contr.printReceipt();
         System.out.println("------------------ End Receipt -------------------");
+        contr.displayInfoToRegister();
     }
 }
