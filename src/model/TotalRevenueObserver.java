@@ -12,3 +12,4 @@ public interface TotalRevenueObserver {
      */
     void newSale(Amount revenue);
 }
+

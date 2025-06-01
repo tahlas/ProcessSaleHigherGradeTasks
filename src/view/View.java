@@ -2,13 +2,10 @@ package view;
 
 import controller.Controller;
 import integration.CustomerID;
-import integration.DiscountHandler;
-import integration.DiscountHandlerSelector;
 import integration.InventoryHandler;
 import model.Amount;
 import util.FileLogger;
 import util.Logger;
-import util.TotalRevenueFileOutput;
 
 /**
  * This is a placeholder for the real view. It contains a hardcoded execution with calls to all
