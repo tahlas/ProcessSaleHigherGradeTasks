@@ -49,7 +49,7 @@ public class View {
             contr.scanItem(InventoryHandler.DATABASE_FAILURE_ID); //used to throw a database failure exception (hardcoded)
         } catch (Exception e){
             logger.log(e.getMessage());
-            errorMsgHandler.showErrorMessage(unexpectedErrorMsg);
+            errorMsgHandler.showErrorMessage(e.getMessage());
         }
         CustomerID customer1 = new CustomerID(70, false);
         DiscountHandler discountHandler = DiscountHandlerSelector.getDiscountHandler(customer1);
