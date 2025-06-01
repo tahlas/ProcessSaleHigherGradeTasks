@@ -61,15 +61,24 @@ public class Controller {
      * Ends the sale and processes the payment.
      * @param amountPaid The total price of the sale.
      */
-    public void endSaleAndPay(Amount amountPaid, CustomerID customerID){
+    public void pay(Amount amountPaid, CustomerID customerID){
         DiscountHandler discountHandler = DiscountHandlerSelector.getDiscountHandler(customerID);
         applyDiscount(discountHandler);
         CashPayment payment = new CashPayment(amountPaid);
         sale.payForSale(payment);
+//        Receipt receipt = sale.getReceipt();
+//        printer.printReceipt(receipt);
+
+    }
+
+    public void printReceipt(){
         Receipt receipt = sale.getReceipt();
         printer.printReceipt(receipt);
+    }
+
+    public void displayInfoToRegister(){
         register.presentChangeToGiveToCustomer(sale);
-        register.addPaymentToRegister(payment.getTotalCostForSale());
+        register.addPaymentToRegister(sale.getPayment().getTotalCostForSale());
         sale.endSale();
     }
 
