@@ -4,12 +4,11 @@ import integration.ItemDTO;
 import integration.Printer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,26 +28,31 @@ class ReceiptTest {
         outContent = null;
         System.setOut(originalSysOut);
     }
-
-    //testing methods that print is not needed...(I did not know that when writing this...)
-    @Disabled
+    @Test
     void testCreateReceiptString() {
         Sale sale = new Sale();
-        ItemDTO item = new ItemDTO("A", "B", new Amount(10), 5, "C");
+        ItemDTO item = new ItemDTO(
+                "abc123",
+                "BigWheel Oatmeal",
+                new Amount(29.9),
+                6,
+                "BigWheel Oatmeal 500 g, whole grain oats, high fiber, gluten free");
         sale.addItem(item);
-        sale.payForSale(new CashPayment(new Amount(10)));
+        Amount paidAmount = new Amount(30);
+        sale.payForSale(new CashPayment(paidAmount));
+        LocalDate saleDate = LocalDate.now();
         Printer printer = new Printer();
         printer.printReceipt(sale.getReceipt());
-        LocalDate saleDate = LocalDate.now();
-        LocalTime saleTime = LocalTime.now();
-        String expectedResult =
-                "Time of Sale: " + saleDate + " " + saleTime.toString().substring(0, 8) + "\n\n" +
-                "B 1 x 10.0\t10.0 SEK\n\n" +
-                "Total: 10.0\n" +
-                "VAT: 0.48\n" +
-                "Cash: 10.0 SEK\n" +
-                "Change: 0.0 SEK";
         String result = outContent.toString();
-        assertTrue(result.contains(expectedResult), "Wrong printout.");
+
+        assertTrue(result.contains("Time of Sale: " + saleDate), "The time of sale should be present in the receipt.");
+        assertTrue(result.contains(item.getName()), "The item name should be present in the receipt.");
+        assertTrue(result.contains("1 x " + item.getPrice()), "The item quantity and price should be present in the receipt.");
+        assertTrue(result.contains(item.getPrice() + " SEK"), "The total item price should be present in the receipt.");
+        assertTrue(result.contains("Total: " + sale.getTotalCostAmount()), "The total price should be present in the receipt.");
+        assertTrue(result.contains("Discounted total: " + sale.getAmountToPay()), "The discounted total should be present in the receipt.");
+        assertTrue(result.contains("VAT: " + sale.getTotalVAT()), "The VAT should be present in the receipt.");
+        assertTrue(result.contains("Cash: " + paidAmount), "The paid amount should be present in the receipt.");
+        assertTrue(result.contains("Change: " + sale.getPayment().getChange()), "The change should be present in the receipt.");
     }
 }
