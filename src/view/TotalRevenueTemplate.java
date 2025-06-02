@@ -9,12 +9,6 @@ import model.TotalRevenueObserver;
 public abstract class TotalRevenueTemplate implements TotalRevenueObserver {
     private Amount totalRevenue = new Amount(0);
 
-//    @Override
-//    public void newSale(Amount revenue) {
-//        totalRevenue = totalRevenue.add(revenue);
-//        //printCurrentState();
-//    }
-
     /**
      * Calculate the total amount paid since the program started.
      * @param priceOfTheSaleThatWasJustMade The price of the sale that was just made.
@@ -25,11 +19,12 @@ public abstract class TotalRevenueTemplate implements TotalRevenueObserver {
         showTotalIncome(totalRevenue);
     }
 
-    private void showTotalIncome(Amount totalRevenue){
+    private void showTotalIncome(Amount totalRevenue){//is parameter allowed?
         try{
             doShowTotalIncome(totalRevenue);
         } catch (Exception e){
             handleErrors(e);
+            e.printStackTrace(); //does this count as changing the structure?
         }
     }
 
