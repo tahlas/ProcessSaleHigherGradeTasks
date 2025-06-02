@@ -2,7 +2,7 @@ package view;
 
 import model.Amount;
 
-//any class that implements observer
+
 public class TotalRevenueView extends TotalRevenueTemplate {
     //unsure if it should have Amount totalRevenue
     protected void doShowTotalIncome(Amount totalRevenue){
@@ -12,6 +12,6 @@ public class TotalRevenueView extends TotalRevenueTemplate {
 
     protected void handleErrors(Exception e){
         System.out.println("CANNOT PRINT TO CONSOLE: " + e.getMessage());
-        e.printStackTrace();
+        //e.printStackTrace();
     }
 }

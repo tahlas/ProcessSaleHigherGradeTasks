@@ -20,6 +20,6 @@ public class TotalRevenueFileOutput extends TotalRevenueTemplate {
     @Override
     protected void handleErrors(Exception e){
         System.out.println("CANNOT PRINT TO FILE: " + e.getMessage());
-        e.printStackTrace();
+        //e.printStackTrace();
     }
 }
