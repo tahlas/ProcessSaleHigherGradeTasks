@@ -13,36 +13,36 @@ import static org.junit.jupiter.api.Assertions.*;
 class TotalRevenueViewTest {
     private ByteArrayOutputStream outContent;
     private PrintStream originalSysOut;
-    private TotalRevenueView view;
+    private TotalRevenueView totalRevenueView;
 
     @BeforeEach
     void setUp() {
         originalSysOut = System.out;
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        view = new TotalRevenueView();
+        totalRevenueView = new TotalRevenueView();
     }
 
     @AfterEach
     void tearDown(){
         outContent = null;
         System.setOut(originalSysOut);
-        view = null;
+        totalRevenueView = null;
     }
 
     @Test
     void testNewSalePrintsTotalRevenue(){
         Amount revenue = new Amount(100);
-        view.newSale(revenue);
+        totalRevenueView.newSale(revenue);
         String result = outContent.toString();
         String expectedOutput = "Current revenue: 100.0";
         assertTrue(result.contains(expectedOutput), "The total revenue should be printed to the console.");
     }
 
     @Test
-    void testHandleErrorsPrintsToSystemOut(){
+    void testHandleErrorPrintToSystemOut(){
         Exception testException = new Exception("Test error");
-        view.handleErrors(testException);
+        totalRevenueView.handleErrors(testException);
         String result = outContent.toString();
         assertTrue(result.contains("CANNOT PRINT TO CONSOLE: Test error"), "The error message should be printed to the console.");
     }
