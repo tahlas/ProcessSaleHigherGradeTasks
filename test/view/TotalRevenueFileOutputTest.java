@@ -29,7 +29,7 @@ class TotalRevenueFileOutputTest {
 
 
     @Test
-    void testHandleErrorsPrintToSystemOut(){
+    void testHandleErrorPrintToSystemOut(){
         Exception testException = new Exception("Test error");
         fileOutput.handleErrors(testException);
         String result = outContent.toString();
