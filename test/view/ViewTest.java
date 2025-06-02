@@ -2,21 +2,16 @@ package view;
 
 import controller.Controller;
 import integration.HandlerCreator;
-import integration.ItemDTO;
 import integration.Printer;
 import integration.Register;
 import model.Amount;
-import model.CashPayment;
-import model.Sale;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
-import java.util.logging.Handler;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -59,9 +54,13 @@ class ViewTest {
         String result = outContent.toString();
 
         assertTrue(result.contains("Time of Sale: " + LocalDate.now()), "The time of sale should be present in the receipt.");
-        assertTrue(result.contains("Begin Receipt"), "The receipt header should be printed.");
-        assertTrue(result.contains("End Receipt"), "The receipt footer should be printed.");
-        assertTrue(result.contains("BigWheel Oatmeal"), "The item name should be present in the receipt.");
+        assertTrue(result.contains("BigWheel"), "The item name should be present in the receipt.");
+        assertTrue(result.contains("2 x 29.9"), "The item quantity and price should be present in the receipt.");
+        assertTrue(result.contains("Total: 74.7"), "The total price should be present in the receipt.");
+        assertTrue(result.contains("Discounted total: 59.76"), "The discounted total should be present in the receipt.");
+        assertTrue(result.contains("VAT: 4.23"), "The VAT should be present in the receipt.");
+        assertTrue(result.contains("Cash: 100.0 SEK"), "The paid amount should be present in the receipt.");
+        assertTrue(result.contains("Change: 40.24 SEK"), "The change should be present in the receipt.");
     }
 
     @Test
