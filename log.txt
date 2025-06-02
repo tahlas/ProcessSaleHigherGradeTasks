@@ -1,8 +1,2 @@
-2025-06-02 00:25:40.725922900, Item with itemID: invalidID could not be scanned.
-2025-06-02 00:25:40.731925100, Could not connect to the database. Item with itemID: databaseFailureID could not be scanned.
-2025-06-02 00:25:40.734922200, Item with itemID: invalidID could not be scanned.
-2025-06-02 00:25:40.734922200, Could not connect to the database. Item with itemID: databaseFailureID could not be scanned.
-2025-06-02 00:25:40.739924200, Item with itemID: invalidID could not be scanned.
-2025-06-02 00:25:40.739924200, Could not connect to the database. Item with itemID: databaseFailureID could not be scanned.
-2025-06-02 00:25:40.786461900, Item with itemID: invalidID could not be scanned.
-2025-06-02 00:25:40.786461900, Could not connect to the database. Item with itemID: databaseFailureID could not be scanned.
+2025-06-02 21:58:40.462424300, Item with itemID: invalidID could not be scanned.
+2025-06-02 21:58:40.475655600, Could not connect to the database. Item with itemID: databaseFailureID could not be scanned.
